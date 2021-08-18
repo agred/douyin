@@ -23,7 +23,7 @@ class Video extends BaseApi
      */
     public function video_data($open_id, $access_token, $item_ids)
     {
-        $api_url = self::BASE_API . '/video/data/';
+        $api_url = self::DOUYIN_API . '/video/data/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -44,7 +44,7 @@ class Video extends BaseApi
      */
     public function video_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api_url = self::BASE_API . '/video/list/';
+        $api_url = self::DOUYIN_API . '/video/list/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -65,7 +65,7 @@ class Video extends BaseApi
      */
     public function video_upload($open_id, $access_token, $file)
     {
-        $api_url = self::BASE_API . '/video/upload/?open_id=' . $open_id . '&access_token=' . $access_token;
+        $api_url = self::DOUYIN_API . '/video/upload/?open_id=' . $open_id . '&access_token=' . $access_token;
         return $this->https_byte($api_url, $file);
     }
 
@@ -82,7 +82,7 @@ class Video extends BaseApi
      */
     public function video_create($open_id, $access_token, $video_id, $text = '', $othes = [])
     {
-        $api_url = self::BASE_API . '/video/create/';
+        $api_url = self::DOUYIN_API . '/video/create/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -111,7 +111,7 @@ class Video extends BaseApi
      */
     public function video_delete($open_id, $access_token, $item_id)
     {
-        $api_url = self::BASE_API . '/video/delete/';
+        $api_url = self::DOUYIN_API . '/video/delete/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -130,7 +130,7 @@ class Video extends BaseApi
      */
     public function video_part_init($open_id, $access_token)
     {
-        $api_url = self::BASE_API . '/video/part/init/';
+        $api_url = self::DOUYIN_API . '/video/part/init/';
         $params = [
             'open_id_id' => $open_id,
             'access_token' => $access_token
@@ -157,7 +157,7 @@ class Video extends BaseApi
             'upload_id' => $upload_id,
             'part_number' => $part_number,
         ];
-        $api_url = self::BASE_API . '/video/part/upload/' . '?' . http_build_query($params);
+        $api_url = self::DOUYIN_API . '/video/part/upload/' . '?' . http_build_query($params);
         return $this->cloud_http_post($api_url, $video);
     }
 
@@ -177,7 +177,7 @@ class Video extends BaseApi
             'access_token' => $access_token,
             'upload_id' => $upload_id
         ];
-        $api_url = self::BASE_API . '/video/part/complete/';
+        $api_url = self::DOUYIN_API . '/video/part/complete/';
         return $this->cloud_http_post($api_url, $params);
     }
 

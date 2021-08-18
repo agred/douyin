@@ -24,7 +24,7 @@ class Oauth extends BaseApi
      */
     public function connect($scope, $redirect_uri, $state = "", $optionalScope = "")
     {
-        $api_url = self::BASE_API . '/platform/oauth/connect/';
+        $api_url = self::DOUYIN_API . '/platform/oauth/connect/';
         $params = [
             'response_type' => 'code',
             'scope' => implode(',', $scope),
@@ -39,6 +39,29 @@ class Oauth extends BaseApi
         return $api_url . '?' . http_build_query($params);
     }
 
+
+    /**
+     * @title 获取授权码(code) **抖音静默获取授权码
+     * @Scope
+     * @url https://open.douyin.com/platform/doc/6848834666170959883
+     * @param string $redirect_uri 必须以http/https开头
+     * @param string $state
+     * @return string
+     */
+    public function authorize($redirect_uri, $state = "")
+    {
+        $api_url = self::DOUYIN_API . '/oauth/authorize/v2/';
+        $params = [
+            'response_type' => 'code',
+            'scope' => 'login_id',
+            'redirect_uri' => $redirect_uri
+        ];
+        if ($state) {
+            $params['state'] = $state;
+        }
+        return $this->cloud_http_post($api_url, $params);
+    }
+
     /**
      * @title 获取access_token
      * @Scope
@@ -48,7 +71,7 @@ class Oauth extends BaseApi
      */
     public function access_token($code)
     {
-        $api_url = self::BASE_API . '/oauth/access_token/';
+        $api_url = self::DOUYIN_API . '/oauth/access_token/';
         $params = [
             'code' => $code,
             'grant_type' => 'authorization_code'
@@ -65,7 +88,7 @@ class Oauth extends BaseApi
      */
     public function renew_refresh_token($refresh_token)
     {
-        $api_url = self::BASE_API . '/oauth/renew_refresh_token/';
+        $api_url = self::DOUYIN_API . '/oauth/renew_refresh_token/';
         $params = ['refresh_token' => $refresh_token];
         return $this->cloud_http_post($api_url, $params);
     }
@@ -79,7 +102,7 @@ class Oauth extends BaseApi
      */
     public function refresh_token($refresh_token)
     {
-        $api_url = self::BASE_API . '/oauth/refresh_token/';
+        $api_url = self::DOUYIN_API . '/oauth/refresh_token/';
         $params = [
             'grant_type' => 'refresh_token',
             'refresh_token' => $refresh_token
@@ -96,7 +119,7 @@ class Oauth extends BaseApi
      */
     public function client_token($grant_type)
     {
-        $api_url = self::BASE_API . '/oauth/client_token/';
+        $api_url = self::DOUYIN_API . '/oauth/client_token/';
         $params = ['grant_type' => $grant_type];
         return $this->cloud_http_post($api_url, $params);
     }

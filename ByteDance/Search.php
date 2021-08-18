@@ -25,7 +25,7 @@ class Search extends BaseApi
      */
     public function video_search($open_id, $access_token, $keyword, $cursor = 0, $count = 20)
     {
-        $api_url = self::BASE_API . '/video/search/';
+        $api_url = self::DOUYIN_API . '/video/search/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -48,7 +48,7 @@ class Search extends BaseApi
      */
     public function video_search_comment_list($access_token, $sec_item_id, $cursor = 0, $count = 20)
     {
-        $api_url = self::BASE_API . '/video/search/comment/list/';
+        $api_url = self::DOUYIN_API . '/video/search/comment/list/';
         $params = [
             'access_token' => $access_token,
             'sec_item_id' => $sec_item_id,
@@ -68,7 +68,7 @@ class Search extends BaseApi
      */
     public function video_search_comment_reply($open_id, $access_token)
     {
-        $api_url = self::BASE_API . '/video/search/comment/reply/';
+        $api_url = self::DOUYIN_API . '/video/search/comment/reply/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token
@@ -89,7 +89,7 @@ class Search extends BaseApi
      */
     public function video_search_comment_reply_list($access_token, $sec_item_id, $comment_id, $cursor = 0, $count = 20)
     {
-        $api_url = self::BASE_API . '/video/search/comment/reply/list/';
+        $api_url = self::DOUYIN_API . '/video/search/comment/reply/list/';
         $params = [
             'access_token' => $access_token,
             'sec_item_id' => $sec_item_id,

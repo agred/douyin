@@ -21,7 +21,7 @@ class Event extends BaseApi
      */
     public function event_status_list($access_token)
     {
-        $api_url = self::BASE_API . '/event/status/list/';
+        $api_url = self::DOUYIN_API . '/event/status/list/';
         $params = ['access_token' => $access_token];
         return $this->cloud_http_post($api_url, $params);
     }
@@ -35,7 +35,7 @@ class Event extends BaseApi
      */
     public function event_status_update($access_token)
     {
-        $api_url = self::BASE_API . '/event/status/update/';
+        $api_url = self::DOUYIN_API . '/event/status/update/';
         $params = ['access_token' => $access_token];
         return $this->cloud_http_post($api_url, $params);
     }

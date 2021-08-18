@@ -24,7 +24,7 @@ class Toutiao extends BaseApi
      */
     public function authorize($scope, $redirect_url, $optionalScope = '', $state = '')
     {
-        $api_url = self::BASE_TOUTIAO_API . '/oauth/authorize/';
+        $api_url = self::TOUTIAO_API . '/oauth/authorize/';
         $params = [
             'response_type' => 'code',
             'scope' => implode(',', $scope),
@@ -48,7 +48,7 @@ class Toutiao extends BaseApi
      */
     public function access_token($code)
     {
-        $api = self::BASE_TOUTIAO_API . '/oauth/access_token/';
+        $api = self::TOUTIAO_API . '/oauth/access_token/';
         $params = [
             'code' => $code,
             'grant_type' => 'authorization_code'
@@ -65,7 +65,7 @@ class Toutiao extends BaseApi
      */
     public function renew_refresh_token($refresh_token)
     {
-        $api_url = self::BASE_API . '/oauth/renew_refresh_token/';
+        $api_url = self::DOUYIN_API . '/oauth/renew_refresh_token/';
         $params = ['refresh_token' => $refresh_token];
         return $this->cloud_http_post($api_url, $params);
     }
@@ -79,7 +79,7 @@ class Toutiao extends BaseApi
      */
     public function refresh_token($refresh_token)
     {
-        $api = self::BASE_TOUTIAO_API . '/oauth/refresh_token/';
+        $api = self::TOUTIAO_API . '/oauth/refresh_token/';
         $params = [
             'grant_type' => 'refresh_token',
             'refresh_token' => $refresh_token
@@ -96,7 +96,7 @@ class Toutiao extends BaseApi
      */
     public function client_token($grant_type)
     {
-        $api_url = self::BASE_TOUTIAO_API . '/oauth/client_token/';
+        $api_url = self::TOUTIAO_API . '/oauth/client_token/';
         $params = ['grant_type' => $grant_type];
         return $this->cloud_http_post($api_url, $params);
     }

@@ -22,7 +22,7 @@ class User extends BaseApi
      */
     public function userinfo($open_id, $access_token)
     {
-        $api_url = self::BASE_API . '/oauth/userinfo/';
+        $api_url = self::DOUYIN_API . '/oauth/userinfo/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token
@@ -42,7 +42,7 @@ class User extends BaseApi
      */
     public function fans_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api_url = self::BASE_API . '/fans/list/';
+        $api_url = self::DOUYIN_API . '/fans/list/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -63,7 +63,7 @@ class User extends BaseApi
      */
     public function fans_check($open_id, $access_token, $follower_open_id)
     {
-        $api_url = self::BASE_API . '/fans/check/';
+        $api_url = self::DOUYIN_API . '/fans/check/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -84,7 +84,7 @@ class User extends BaseApi
      */
     public function following_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api_url = self::BASE_API . '/following/list/';
+        $api_url = self::DOUYIN_API . '/following/list/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,

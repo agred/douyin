@@ -22,7 +22,7 @@ class Tool extends BaseApi
      */
     public function devtool_micapp_is_legal($access_token, $micapp_id)
     {
-        $api_url = self::BASE_API . '/devtool/micapp/is_legal/';
+        $api_url = self::DOUYIN_API . '/devtool/micapp/is_legal/';
         $params = [
             'access_token' => $access_token,
             'micapp_id' => $micapp_id

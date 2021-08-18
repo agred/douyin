@@ -22,7 +22,7 @@ class Poi extends BaseApi
      */
     public function supplier_sync($access_token, $supplier_ext_id)
     {
-        $api_url = self::BASE_API . '/poi/supplier/sync/';
+        $api_url = self::DOUYIN_API . '/poi/supplier/sync/';
         $params = [
             'access_token' => $access_token,
             'supplier_ext_id' => $supplier_ext_id
@@ -40,7 +40,7 @@ class Poi extends BaseApi
      */
     public function supplier_query_supplier($access_token, $supplier_ext_id)
     {
-        $api_url = self::BASE_API . '/poi/v2/supplier/query/supplier/';
+        $api_url = self::DOUYIN_API . '/poi/v2/supplier/query/supplier/';
         $params = [
             'access_token' => $access_token,
             'supplier_ext_id' => $supplier_ext_id
@@ -58,7 +58,7 @@ class Poi extends BaseApi
      */
     public function base_query_amap($access_token, $amap_id)
     {
-        $api_url = self::BASE_API . '/poi/base/query/amap/';
+        $api_url = self::DOUYIN_API . '/poi/base/query/amap/';
         $params = [
             'access_token' => $access_token,
             'amap_id' => $amap_id
@@ -76,7 +76,7 @@ class Poi extends BaseApi
      */
     public function coupon_sync($access_token, $status)
     {
-        $api_url = self::BASE_API . '/poi/v2/coupon/sync/';
+        $api_url = self::DOUYIN_API . '/poi/v2/coupon/sync/';
         $params = [
             'access_token' => $access_token,
             'status' => $status
@@ -94,7 +94,7 @@ class Poi extends BaseApi
      */
     public function coupon_sync_available($access_token, $status)
     {
-        $api_url = self::BASE_API . '/poi/v2/coupon/sync/coupon_available/';
+        $api_url = self::DOUYIN_API . '/poi/v2/coupon/sync/coupon_available/';
         $params = [
             'access_token' => $access_token,
             'status' => $status

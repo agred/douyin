@@ -23,7 +23,7 @@ class Data extends BaseApi
      */
     public function data_external_user_item($open_id, $access_token, $date_type)
     {
-        $api_url = self::BASE_API . '/data/external/user/item/';
+        $api_url = self::DOUYIN_API . '/data/external/user/item/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -43,7 +43,7 @@ class Data extends BaseApi
      */
     public function data_external_user_fans($open_id, $access_token, $date_type)
     {
-        $api_url = self::BASE_API . '/data/external/user/fans/';
+        $api_url = self::DOUYIN_API . '/data/external/user/fans/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -63,7 +63,7 @@ class Data extends BaseApi
      */
     public function data_external_user_like($open_id, $access_token, $date_type)
     {
-        $api_url = self::BASE_API . '/data/external/user/like/';
+        $api_url = self::DOUYIN_API . '/data/external/user/like/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -83,7 +83,7 @@ class Data extends BaseApi
      */
     public function data_external_user_comment($open_id, $access_token, $date_type)
     {
-        $api_url = self::BASE_API . '/data/external/user/comment/';
+        $api_url = self::DOUYIN_API . '/data/external/user/comment/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -103,7 +103,7 @@ class Data extends BaseApi
      */
     public function data_external_user_share($open_id, $access_token, $date_type)
     {
-        $api_url = self::BASE_API . '/data/external/user/share/';
+        $api_url = self::DOUYIN_API . '/data/external/user/share/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -123,7 +123,7 @@ class Data extends BaseApi
      */
     public function data_external_user_profile($open_id, $access_token, $date_type)
     {
-        $api_url = self::BASE_API . '/data/external/user/profile/';
+        $api_url = self::DOUYIN_API . '/data/external/user/profile/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
@@ -142,7 +142,7 @@ class Data extends BaseApi
      */
     public function fans_data($open_id, $access_token)
     {
-        $api_url = self::BASE_API . '/fans/data/';
+        $api_url = self::DOUYIN_API . '/fans/data/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token
@@ -160,7 +160,7 @@ class Data extends BaseApi
      */
     public function data_extern_fans_source($open_id, $access_token)
     {
-        $api_url = self::BASE_API . '/data/extern/fans/source/';
+        $api_url = self::DOUYIN_API . '/data/extern/fans/source/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token
@@ -178,7 +178,7 @@ class Data extends BaseApi
      */
     public function data_extern_fans_favourite($open_id, $access_token)
     {
-        $api_url = self::BASE_API . '/data/extern/fans/favourite/';
+        $api_url = self::DOUYIN_API . '/data/extern/fans/favourite/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token
@@ -196,7 +196,7 @@ class Data extends BaseApi
      */
     public function data_extern_fans_comment($open_id, $access_token)
     {
-        $api_url = self::BASE_API . '/data/extern/fans/comment/';
+        $api_url = self::DOUYIN_API . '/data/extern/fans/comment/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token
@@ -213,7 +213,7 @@ class Data extends BaseApi
      */
     public function data_extern_billboard_hot_video($access_token)
     {
-        $api_url = self::BASE_API . '/data/extern/billboard/hot_video/';
+        $api_url = self::DOUYIN_API . '/data/extern/billboard/hot_video/';
         $params = ['access_token' => $access_token];
         return $this->cloud_http_post($api_url, $params);
     }

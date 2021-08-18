@@ -24,7 +24,7 @@ class Comment extends BaseApi
      */
     public function reply($open_id, $access_token, $item_id, $content)
     {
-        $dyapi = self::BASE_API . '/item/comment/reply/';
+        $dyapi = self::DOUYIN_API . '/item/comment/reply/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
