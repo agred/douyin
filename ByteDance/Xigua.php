@@ -24,7 +24,7 @@ class Xigua extends BaseApi
      */
     public function connect($scope, $redirect_uri, $state = "", $optionalScope = "")
     {
-        $api_url = self::XIGUA_API . '/platform/oauth/connect/';
+        $api_url = self::XIGUA_API . '/oauth/connect/';
         $params = [
             'response_type' => 'code',
             'scope' => implode(',', $scope),

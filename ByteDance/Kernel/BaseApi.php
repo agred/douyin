@@ -10,11 +10,12 @@ namespace ByteDance\Kernel;
 class BaseApi
 {
 
-    const SDK_VER = '1.0.1';
+    const SDK_VER = '1.0.3';
 
-    const BASE_API         = "https://open.douyin.com";
-    const BASE_TOUTIAO_API = "https://open.snssdk.com";
-    public $client_key = null;
+    const DOUYIN_API  = "https://open.douyin.com";
+    const TOUTIAO_API = "https://open.snssdk.com";
+    const XIGUA_API   = "https://open-api.ixigua.com";
+    public $client_key    = null;
     public $client_secret = null;
 
     public $response = null;
