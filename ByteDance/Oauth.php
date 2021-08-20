@@ -41,7 +41,7 @@ class Oauth extends BaseApi
 
 
     /**
-     * @title 获取授权码(code) **抖音静默获取授权码
+     * @title 获取授权码(code) **抖音静默获取授权码，请求域名为：https://aweme.snssdk.com
      * @Scope
      * @url https://open.douyin.com/platform/doc/6848834666170959883
      * @param string $redirect_uri 必须以http/https开头
@@ -50,7 +50,7 @@ class Oauth extends BaseApi
      */
     public function authorize($redirect_uri, $state = "")
     {
-        $api_url = self::DOUYIN_API . '/oauth/authorize/v2/';
+        $api_url = 'https://aweme.snssdk.com/oauth/authorize/v2/';
         $params = [
             'response_type' => 'code',
             'scope' => 'login_id',
