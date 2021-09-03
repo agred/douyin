@@ -181,4 +181,23 @@ class Video extends BaseApi
         return $this->cloud_http_post($api_url, $params);
     }
 
+    /**
+     * @title 获取share-id
+     * @Scope aweme.share
+     * @url https://open.douyin.com/platform/doc/6848798622172121099
+     * @param string $access_token
+     * @param bool $need_callback
+     * @return array
+     */
+    public function share_id($access_token, $need_callback = true)
+    {
+        $params = [
+            'access_token' => $access_token,
+            'need_callback' => $need_callback,
+            'default_hashtag' => 'hashtag'
+        ];
+        $api_url = self::DOUYIN_API . '/share-id/';
+        return $this->cloud_http_post($api_url, $params);
+    }
+
 }

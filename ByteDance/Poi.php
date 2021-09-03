@@ -102,4 +102,28 @@ class Poi extends BaseApi
         return $this->cloud_http_post($api_url, $params);
     }
 
+    /**
+     * @title 查询POI信息
+     * @Scope poi.search
+     * @url https://open.douyin.com/platform/doc/6848806527751555086
+     * @param string $access_token
+     * @param int $cursor 分页游标, 第一页请求cursor是0
+     * @param int $count 每页数量
+     * @param string $keyword 查询关键字，例如美食
+     * @param string $city 查询城市，例如上海、北京
+     * @return array
+     */
+    public function poi_search_keyword($access_token, $cursor = 0, $count = 20, $keyword = '', $city = '')
+    {
+        $api_url = self::DOUYIN_API . '/poi/search/keyword/';
+        $params = [
+            'access_token' => $access_token,
+            'cursor' => $cursor,
+            'count' => $count,
+            'keyword' => $keyword,
+            'city' => $city
+        ];
+        return $this->cloud_http_post($api_url, $params);
+    }
+
 }

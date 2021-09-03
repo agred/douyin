@@ -31,6 +31,34 @@ function get_query_str($url, $key)
 }
 
 /**
+ * @title 是否抖音客户端
+ * @return bool
+ */
+if (!function_exists('is_byteLocale')) {
+    function is_byteLocale()
+    {
+        if (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'bytelocale') !== false) {
+            return true;
+        }
+        return false;
+    }
+}
+
+/**
+ * @title 是否苹果iphone
+ * @return bool
+ */
+if (!function_exists('is_iphone')) {
+    function is_iphone()
+    {
+        if (strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'iphone') !== false) {
+            return true;
+        }
+        return false;
+    }
+}
+
+/**
  * @title 获取抖音URL Scheme
  * @param array $params 参数
  * @return string
@@ -39,25 +67,29 @@ function get_url_scheme($params = [])
 {
     switch ($params['type']) {
         case 'user.profile':
-            $link = 'snssdk1128://user/profile/'.$params['uid'];
+            if (is_iphone()) {
+                $link = 'snssdk1128://user/profile/'.$params['uid'].'?refer=web&gd_label=click_wap_profile_bottom&type=need_follow&needlaunchlog=1';
+            } else {
+                $link = 'snssdk1128://user/profile/'.$params['uid'].'?refer=web&gd_label=click_wap_download_follow&type=need_follow&needlaunchlog=1';
+            }
             break;
         case 'aweme.detail':
             $link = 'snssdk1128://aweme/detail/'.$params['id'];
             break;
         case 'poi.detail':
-            $link = 'snssdk1128://poi/detail?id='.$params['id'];
+            $link = 'snssdk1128://poi/detail?id='.$params['id'].'&from=webview&refer=web';
             break;
         case 'music':
-            $link = 'snssdk1128://music/detail/'.$params['id'];
+            $link = 'snssdk1128://music/detail/'.$params['id'].'?refer=web';
             break;
         case 'live':
-            $link = 'snssdk1128://live?room_id='.$params['id'];
+            $link = 'snssdk1128://live?room_id='.$params['id'].'&from=webview&refer=web';
             break;
         case 'forward':
             $link = 'snssdk1128://forward/detail/'.$params['id'];
             break;
         case 'challenge':
-            $link = 'snssdk1128://challenge/detail/'.$params['id'];
+            $link = 'snssdk1128://challenge/detail/'.$params['id'].'?refer=web';
             break;
         case 'webview':
             $link = 'snssdk1128://webview?url='.$params['url'].'&from=webview&refer=web';
