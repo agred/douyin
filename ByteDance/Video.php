@@ -18,16 +18,16 @@ class Video extends BaseApi
      * @url https://open.douyin.com/platform/doc/6848806544931325965
      * @param string $open_id
      * @param string $access_token
-     * @param string $item_ids
+     * @param array $item_ids
      * @return array
      */
-    public function video_data($open_id, $access_token, $item_ids)
+    public function video_data($open_id, $access_token, $item_ids = [])
     {
         $api_url = self::DOUYIN_API . '/video/data/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
-            'item_ids' => implode(',', !empty($item_ids) ? $item_ids : [])
+            'item_ids' => $item_ids
         ];
         return $this->cloud_http_post($api_url, $params);
     }
