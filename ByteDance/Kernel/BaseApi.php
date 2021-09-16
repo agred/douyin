@@ -43,14 +43,16 @@ class BaseApi
         if($params){
             $url = $url . '?' . http_build_query($params);
         }
-        return $this->https_request($url );
+        $result = $this->https_request($url);
+        return json_decode($result, true);
     }
 
     public function https_post($url, $data = []){
         $header = [
             'Accept:application/json' , 'Content-Type:application/json'
         ];
-        return $this->https_request($url, json_encode($data), $header);
+        $result = $this->https_request($url, json_encode($data), $header);
+        return json_decode($result, true);
     }
 
     public function https_request($url, $data = null, $headers = null)
