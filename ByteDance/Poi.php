@@ -17,17 +17,16 @@ class Poi extends BaseApi
      * @Scope poi.product
      * @url https://open.douyin.com/platform/doc/6848798600688961547
      * @param string $access_token
-     * @param string $supplier_ext_id 接入方店铺id x0001
-     * @return array
+     * @param array $dataBody
      */
-    public function supplier_sync($access_token, $supplier_ext_id)
+    public function supplier_sync($access_token, $dataBody = [])
     {
         $api_url = self::DOUYIN_API . '/poi/supplier/sync/';
         $params = [
             'access_token' => $access_token,
-            'supplier_ext_id' => $supplier_ext_id
         ];
-        return $this->cloud_http_post($api_url, $params);
+        $api_url = $api_url . '?' . http_build_query($params);
+        return $this->https_post($api_url , $dataBody);
     }
 
     /**
@@ -36,7 +35,6 @@ class Poi extends BaseApi
      * @url https://open.douyin.com/platform/doc/6948302162829101059
      * @param string $access_token
      * @param string $supplier_ext_id
-     * @return array
      */
     public function supplier_query_supplier($access_token, $supplier_ext_id)
     {
@@ -45,7 +43,7 @@ class Poi extends BaseApi
             'access_token' => $access_token,
             'supplier_ext_id' => $supplier_ext_id
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -54,7 +52,6 @@ class Poi extends BaseApi
      * @url https://open.douyin.com/platform/doc/6848798579239192588
      * @param string $access_token
      * @param string $amap_id 高德POI ID
-     * @return array
      */
     public function base_query_amap($access_token, $amap_id)
     {
@@ -63,7 +60,7 @@ class Poi extends BaseApi
             'access_token' => $access_token,
             'amap_id' => $amap_id
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -71,17 +68,16 @@ class Poi extends BaseApi
      * @Scope
      * @url https://open.douyin.com/platform/doc/6985920247903701005
      * @param string $access_token
-     * @param int $status 1/0
-     * @return array
+     * @param array $dataBody
      */
-    public function coupon_sync($access_token, $status)
+    public function coupon_sync($access_token, $dataBody = [])
     {
         $api_url = self::DOUYIN_API . '/poi/v2/coupon/sync/';
         $params = [
-            'access_token' => $access_token,
-            'status' => $status
+            'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        $api_url = $api_url . '?' . http_build_query($params);
+        return $this->https_post($api_url , $dataBody);
     }
 
     /**
@@ -89,17 +85,16 @@ class Poi extends BaseApi
      * @Scope
      * @url https://open.douyin.com/platform/doc/6985920590397966372
      * @param string $access_token
-     * @param int $status 1/0
-     * @return array
+     * @param array $dataBody
      */
-    public function coupon_sync_available($access_token, $status)
+    public function coupon_sync_available($access_token, $dataBody = [])
     {
         $api_url = self::DOUYIN_API . '/poi/v2/coupon/sync/coupon_available/';
         $params = [
-            'access_token' => $access_token,
-            'status' => $status
+            'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        $api_url = $api_url . '?' . http_build_query($params);
+        return $this->https_post($api_url , $dataBody);
     }
 
     /**
@@ -111,7 +106,6 @@ class Poi extends BaseApi
      * @param int $count 每页数量
      * @param string $keyword 查询关键字，例如美食
      * @param string $city 查询城市，例如上海、北京
-     * @return array
      */
     public function poi_search_keyword($access_token, $cursor = 0, $count = 20, $keyword = '', $city = '')
     {
@@ -123,7 +117,7 @@ class Poi extends BaseApi
             'keyword' => $keyword,
             'city' => $city
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
 }

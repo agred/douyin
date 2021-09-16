@@ -21,7 +21,6 @@ class Search extends BaseApi
      * @param string $keyword
      * @param int $cursor
      * @param int $count
-     * @return array
      */
     public function video_search($open_id, $access_token, $keyword, $cursor = 0, $count = 20)
     {
@@ -33,7 +32,7 @@ class Search extends BaseApi
             'cursor' => $cursor,
             'count' => $count
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -44,7 +43,6 @@ class Search extends BaseApi
      * @param string $sec_item_id
      * @param int $cursor
      * @param int $count
-     * @return array
      */
     public function video_search_comment_list($access_token, $sec_item_id, $cursor = 0, $count = 20)
     {
@@ -55,7 +53,7 @@ class Search extends BaseApi
             'cursor' => $cursor,
             'count' => $count,
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -64,16 +62,17 @@ class Search extends BaseApi
      * @url https://open.douyin.com/platform/doc/6857389572192520200
      * @param string $open_id
      * @param string $access_token
-     * @return array
+     * @param array $dataBody ['sec_item_id','comment_id','content']
      */
-    public function video_search_comment_reply($open_id, $access_token)
+    public function video_search_comment_reply($open_id, $access_token, $dataBody = [])
     {
         $api_url = self::DOUYIN_API . '/video/search/comment/reply/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        $api_url = $api_url . '?' . http_build_query($params);
+        return $this->https_post($api_url , $dataBody);
     }
 
     /**
@@ -85,7 +84,6 @@ class Search extends BaseApi
      * @param string $comment_id
      * @param int $cursor
      * @param int $count
-     * @return array
      */
     public function video_search_comment_reply_list($access_token, $sec_item_id, $comment_id, $cursor = 0, $count = 20)
     {
@@ -97,7 +95,7 @@ class Search extends BaseApi
             'cursor' => $cursor,
             'count' => $count
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
 }

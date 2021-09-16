@@ -10,7 +10,7 @@ namespace ByteDance\Kernel;
 class BaseApi
 {
 
-    const SDK_VER = '1.0.4';
+    const SDK_VER = '1.0.5';
 
     const DOUYIN_API  = "https://open.douyin.com";
     const TOUTIAO_API = "https://open.snssdk.com";
@@ -31,12 +31,26 @@ class BaseApi
         return $this->response ? json_decode($this->response, true) : true;
     }
 
-    public function cloud_http_post($url, $data = [])
+    public function cloud_https_post($url, $data = [])
     {
         $data['client_key'] = $this->client_key;
         $data['client_secret'] = $this->client_secret;
         $result = $this->https_request($url, $data);
         return json_decode($result, true);
+    }
+
+    public function https_get($url , $params = []){
+        if($params){
+            $url = $url . '?' . http_build_query($params);
+        }
+        return $this->https_request($url );
+    }
+
+    public function https_post($url, $data = []){
+        $header = [
+            'Accept:application/json' , 'Content-Type:application/json'
+        ];
+        return $this->https_request($url, json_encode($data), $header);
     }
 
     public function https_request($url, $data = null, $headers = null)
@@ -71,7 +85,7 @@ class BaseApi
             . $payload . "\r\n"
             . "--__X_PAW_BOUNDARY__\r\n"
             . "Content-Type: video/mp4\r\n"
-            . "Content-Disposition: form-data; name=\"video\"; filename=\"123456.mp4\"\r\n"
+            . "Content-Disposition: form-data; name=\"video\"; filename=\"test.mp4\"\r\n"
             . "\r\n"
             . file_get_contents($file) . "\r\n"
             . "--__X_PAW_BOUNDARY__--";

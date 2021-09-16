@@ -18,7 +18,6 @@ class Tool extends BaseApi
      * @url https://open.douyin.com/platform/doc/6848798536256014348
      * @param string $access_token
      * @param string $micapp_id 小程序的micapp_id
-     * @return string
      */
     public function devtool_micapp_is_legal($access_token, $micapp_id)
     {
@@ -27,7 +26,7 @@ class Tool extends BaseApi
             'access_token' => $access_token,
             'micapp_id' => $micapp_id
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
 }

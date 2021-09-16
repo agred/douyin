@@ -18,7 +18,6 @@ class User extends BaseApi
      * @url https://open.douyin.com/platform/doc/6848806527751489550
      * @param string $open_id
      * @param string $access_token
-     * @return array
      */
     public function userinfo($open_id, $access_token)
     {
@@ -27,7 +26,7 @@ class User extends BaseApi
             'open_id' => $open_id,
             'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -38,7 +37,6 @@ class User extends BaseApi
      * @param string $access_token
      * @param int $cursor
      * @param int $count
-     * @return array
      */
     public function fans_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
@@ -49,7 +47,7 @@ class User extends BaseApi
             'cursor' => $cursor,
             'count' => $count
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -59,7 +57,6 @@ class User extends BaseApi
      * @param string $open_id
      * @param string $access_token
      * @param string $follower_open_id
-     * @return array
      */
     public function fans_check($open_id, $access_token, $follower_open_id)
     {
@@ -69,7 +66,7 @@ class User extends BaseApi
             'access_token' => $access_token,
             'follower_open_id' => $follower_open_id
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -80,7 +77,6 @@ class User extends BaseApi
      * @param string $access_token
      * @param int $cursor
      * @param int $count
-     * @return array
      */
     public function following_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
@@ -91,7 +87,7 @@ class User extends BaseApi
             'cursor' => $cursor,
             'count' => $count
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**

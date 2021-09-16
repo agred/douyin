@@ -20,7 +20,6 @@ class Toutiao extends BaseApi
      * @param string $redirect_url 必须以http/https开头
      * @param string $optionalScope
      * @param string $state
-     * @return array
      */
     public function authorize($scope, $redirect_url, $optionalScope = '', $state = '')
     {
@@ -36,7 +35,7 @@ class Toutiao extends BaseApi
         if ($optionalScope != '') {
             $params['optionalScope'] = $optionalScope;
         }
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -44,7 +43,6 @@ class Toutiao extends BaseApi
      * @Scope
      * @url https://open.douyin.com/platform/doc/6848806493387606024
      * @param string $code
-     * @return array
      */
     public function access_token($code)
     {
@@ -53,7 +51,7 @@ class Toutiao extends BaseApi
             'code' => $code,
             'grant_type' => 'authorization_code'
         ];
-        return $this->cloud_http_post($api, $params);
+        return $this->cloud_https_post($api, $params);
     }
 
     /**
@@ -61,13 +59,12 @@ class Toutiao extends BaseApi
      * @Scope renew_refresh_token
      * @url https://open.douyin.com/platform/doc/6848806519174154248
      * @param string $refresh_token 通过access_token获取到的refresh_token参数
-     * @return array
      */
     public function renew_refresh_token($refresh_token)
     {
         $api_url = self::DOUYIN_API . '/oauth/renew_refresh_token/';
         $params = ['refresh_token' => $refresh_token];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->cloud_https_post($api_url, $params);
     }
 
     /**
@@ -75,7 +72,6 @@ class Toutiao extends BaseApi
      * @Scope
      * @url https://open.douyin.com/platform/doc/6848806497707722765
      * @param string $refresh_token 通过access_token获取到的refresh_token参数
-     * @return array
      */
     public function refresh_token($refresh_token)
     {
@@ -84,7 +80,7 @@ class Toutiao extends BaseApi
             'grant_type' => 'refresh_token',
             'refresh_token' => $refresh_token
         ];
-        return $this->cloud_http_post($api, $params);
+        return $this->cloud_https_post($api, $params);
     }
 
     /**
@@ -92,13 +88,12 @@ class Toutiao extends BaseApi
      * @Scope
      * @url https://open.douyin.com/platform/doc/6848806493387573256
      * @param string $grant_type 传client_credential
-     * @return array
      */
     public function client_token($grant_type)
     {
         $api_url = self::TOUTIAO_API . '/oauth/client_token/';
         $params = ['grant_type' => $grant_type];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->cloud_https_post($api_url, $params);
     }
 
 }

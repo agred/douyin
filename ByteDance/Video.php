@@ -19,17 +19,16 @@ class Video extends BaseApi
      * @param string $open_id
      * @param string $access_token
      * @param array $item_ids
-     * @return array
      */
     public function video_data($open_id, $access_token, $item_ids = [])
     {
         $api_url = self::DOUYIN_API . '/video/data/';
         $params = [
             'open_id' => $open_id,
-            'access_token' => $access_token,
-            'item_ids' => $item_ids
+            'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        $api_url = $api_url . '?' . http_build_query($params);
+        return $this->https_post($api_url , $item_ids);
     }
 
     /**
@@ -40,7 +39,6 @@ class Video extends BaseApi
      * @param string $access_token
      * @param int $cursor 分页游标, 第一页请求cursor是0
      * @param int $count 每页数量
-     * @return array
      */
     public function video_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
@@ -51,7 +49,7 @@ class Video extends BaseApi
             'cursor' => $cursor,
             'count' => $count
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -61,7 +59,6 @@ class Video extends BaseApi
      * @param string $open_id
      * @param string $access_token
      * @param string $file
-     * @return array
      */
     public function video_upload($open_id, $access_token, $file)
     {
@@ -75,29 +72,17 @@ class Video extends BaseApi
      * @url https://open.douyin.com/platform/doc/6848798087398328323
      * @param string $open_id
      * @param string $access_token
-     * @param string $video_id
-     * @param string $text
-     * @param array $othes
-     * @return array
+     * @param array $dataBody
      */
-    public function video_create($open_id, $access_token, $video_id, $text = '', $othes = [])
+    public function video_create($open_id, $access_token, $dataBody = [])
     {
         $api_url = self::DOUYIN_API . '/video/create/';
         $params = [
             'open_id' => $open_id,
-            'access_token' => $access_token,
-            'video_id' => $video_id,
-            'text' => $text,
-            'poi_name' => !empty($othes['poi_name']) ? $othes['poi_name'] : '',
-            'poi_share' => !empty($othes['poi_share']) ? $othes['poi_share'] : '',
-            'real_share' => !empty($othes['real_share']) ? $othes['real_share'] : '',
-            'real_open_id' => !empty($othes['real_open_id']) ? $othes['real_open_id'] : '',
-            'micro_app_id' => !empty($othes['micro_app_id']) ? $othes['micro_app_id'] : '',
-            'micro_app_title' => !empty($othes['micro_app_title']) ? $othes['micro_app_title'] : '',
-            'micro_app_url' => !empty($othes['micro_app_url']) ? $othes['micro_app_url'] : '',
-            'at_users' => !empty($othes['$at_users']) ? $othes['$at_users'] : [],
+            'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        $api_url = $api_url . '?' . http_build_query($params);
+        return $this->https_post($api_url , $dataBody);
     }
 
     /**
@@ -107,17 +92,16 @@ class Video extends BaseApi
      * @param string $open_id
      * @param string $access_token
      * @param string $item_id
-     * @return array
      */
     public function video_delete($open_id, $access_token, $item_id)
     {
         $api_url = self::DOUYIN_API . '/video/delete/';
         $params = [
             'open_id' => $open_id,
-            'access_token' => $access_token,
-            'item_id' => $item_id,
+            'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        $api_url = $api_url . '?' . http_build_query($params);
+        return $this->https_post($api_url , $item_id);
     }
 
     /**
@@ -126,16 +110,16 @@ class Video extends BaseApi
      * @url https://open.douyin.com/platform/doc/6848798087398393859
      * @param string $open_id
      * @param string $access_token
-     * @return array
      */
     public function video_part_init($open_id, $access_token)
     {
         $api_url = self::DOUYIN_API . '/video/part/init/';
         $params = [
-            'open_id_id' => $open_id,
+            'open_id' => $open_id,
             'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        $api_url = $api_url . '?' . http_build_query($params);
+        return $this->https_post($api_url);
     }
 
     /**
@@ -147,18 +131,18 @@ class Video extends BaseApi
      * @param string $upload_id
      * @param string $part_number
      * @param array $video
-     * @return array
      */
-    public function video_part_upload($open_id, $access_token, $upload_id, $part_number, $video)
+    public function video_part_upload($open_id, $access_token, $upload_id, $part_number, $video = [])
     {
+        $api_url = self::DOUYIN_API . '/video/part/upload/';
         $params = [
-            'open_id_id' => $open_id,
+            'open_id' => $open_id,
             'access_token' => $access_token,
             'upload_id' => $upload_id,
             'part_number' => $part_number,
         ];
-        $api_url = self::DOUYIN_API . '/video/part/upload/' . '?' . http_build_query($params);
-        return $this->cloud_http_post($api_url, $video);
+        $api_url = $api_url . '?' . http_build_query($params);
+        return $this->https_post($api_url, $video);
     }
 
     /**
@@ -168,17 +152,17 @@ class Video extends BaseApi
      * @param string $open_id
      * @param string $access_token
      * @param string $upload_id
-     * @return array
      */
     public function video_part_complete($open_id, $access_token, $upload_id)
     {
+        $api_url = self::DOUYIN_API . '/video/part/complete/';
         $params = [
-            'open_id_id' => $open_id,
+            'open_id' => $open_id,
             'access_token' => $access_token,
             'upload_id' => $upload_id
         ];
-        $api_url = self::DOUYIN_API . '/video/part/complete/';
-        return $this->cloud_http_post($api_url, $params);
+        $api_url = $api_url . '?' . http_build_query($params);
+        return $this->https_post($api_url);
     }
 
     /**
@@ -187,17 +171,16 @@ class Video extends BaseApi
      * @url https://open.douyin.com/platform/doc/6848798622172121099
      * @param string $access_token
      * @param bool $need_callback
-     * @return array
      */
     public function share_id($access_token, $need_callback = true)
     {
+        $api_url = self::DOUYIN_API . '/share-id/';
         $params = [
             'access_token' => $access_token,
             'need_callback' => $need_callback,
             'default_hashtag' => 'hashtag'
         ];
-        $api_url = self::DOUYIN_API . '/share-id/';
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
 }

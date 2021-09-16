@@ -18,20 +18,21 @@ class Comment extends BaseApi
      * @url https://open.douyin.com/platform/doc/6848798514797971468
      * @param string $open_id
      * @param string $access_token
+     * @param string $comment_id
      * @param string $item_id
      * @param string $content
-     * @return array
      */
-    public function reply($open_id, $access_token, $item_id, $content)
+    public function reply($open_id, $access_token, $comment_id, $item_id, $content)
     {
         $dyapi = self::DOUYIN_API . '/item/comment/reply/';
         $params = [
             'open_id' => $open_id,
             'access_token' => $access_token,
+            'comment_id' => $comment_id,
             'item_id' => $item_id,
             'content' => $content
         ];
-        return $this->cloud_http_post($dyapi, $params);
+        return $this->https_post($dyapi, $params);
     }
 
 }

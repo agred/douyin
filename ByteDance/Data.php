@@ -19,7 +19,6 @@ class Data extends BaseApi
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
-     * @return array
      */
     public function data_external_user_item($open_id, $access_token, $date_type)
     {
@@ -29,7 +28,7 @@ class Data extends BaseApi
             'access_token' => $access_token,
             'date_type' => $date_type
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -39,7 +38,6 @@ class Data extends BaseApi
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
-     * @return array
      */
     public function data_external_user_fans($open_id, $access_token, $date_type)
     {
@@ -49,7 +47,7 @@ class Data extends BaseApi
             'access_token' => $access_token,
             'date_type' => $date_type
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -59,7 +57,6 @@ class Data extends BaseApi
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
-     * @return array
      */
     public function data_external_user_like($open_id, $access_token, $date_type)
     {
@@ -69,7 +66,7 @@ class Data extends BaseApi
             'access_token' => $access_token,
             'date_type' => $date_type
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -79,7 +76,6 @@ class Data extends BaseApi
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
-     * @return array
      */
     public function data_external_user_comment($open_id, $access_token, $date_type)
     {
@@ -89,7 +85,7 @@ class Data extends BaseApi
             'access_token' => $access_token,
             'date_type' => $date_type
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -99,7 +95,6 @@ class Data extends BaseApi
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
-     * @return array
      */
     public function data_external_user_share($open_id, $access_token, $date_type)
     {
@@ -109,7 +104,7 @@ class Data extends BaseApi
             'access_token' => $access_token,
             'date_type' => $date_type
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -119,7 +114,6 @@ class Data extends BaseApi
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
-     * @return array
      */
     public function data_external_user_profile($open_id, $access_token, $date_type)
     {
@@ -129,7 +123,7 @@ class Data extends BaseApi
             'access_token' => $access_token,
             'date_type' => $date_type
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -138,7 +132,6 @@ class Data extends BaseApi
      * @url https://open.douyin.com/platform/doc/6848798471810484227
      * @param string $open_id
      * @param string $access_token
-     * @return array
      */
     public function fans_data($open_id, $access_token)
     {
@@ -147,7 +140,7 @@ class Data extends BaseApi
             'open_id' => $open_id,
             'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -156,7 +149,6 @@ class Data extends BaseApi
      * @url https://open.douyin.com/platform/doc/6908972512596543500
      * @param string $open_id
      * @param string $access_token
-     * @return array
      */
     public function data_extern_fans_source($open_id, $access_token)
     {
@@ -165,7 +157,7 @@ class Data extends BaseApi
             'open_id' => $open_id,
             'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -174,7 +166,6 @@ class Data extends BaseApi
      * @url https://open.douyin.com/platform/doc/6908950744699914252
      * @param string $open_id
      * @param string $access_token
-     * @return array
      */
     public function data_extern_fans_favourite($open_id, $access_token)
     {
@@ -183,7 +174,7 @@ class Data extends BaseApi
             'open_id' => $open_id,
             'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -192,7 +183,6 @@ class Data extends BaseApi
      * @url https://open.douyin.com/platform/doc/6908970631979681796
      * @param string $open_id
      * @param string $access_token
-     * @return array
      */
     public function data_extern_fans_comment($open_id, $access_token)
     {
@@ -201,7 +191,7 @@ class Data extends BaseApi
             'open_id' => $open_id,
             'access_token' => $access_token
         ];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
     /**
@@ -209,13 +199,12 @@ class Data extends BaseApi
      * @Scope data.external.billboard_hot_video
      * @url https://open.douyin.com/platform/doc/6908910551393437707
      * @param string $access_token
-     * @return array
      */
     public function data_extern_billboard_hot_video($access_token)
     {
         $api_url = self::DOUYIN_API . '/data/extern/billboard/hot_video/';
         $params = ['access_token' => $access_token];
-        return $this->cloud_http_post($api_url, $params);
+        return $this->https_get($api_url, $params);
     }
 
 }
