@@ -32,12 +32,12 @@ class Event extends BaseApi
      * @param string $access_token 调用/oauth/client_token/生成的token，此token不需要用户授权
      * @param array $list
      */
-    public function event_status_update($access_token, $list = [])
+    public function event_status_update($access_token, $list)
     {
         $api_url = self::DOUYIN_API . '/event/status/update/';
         $params = ['access_token' => $access_token];
         $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url , $list);
+        return $this->https_post($api_url, $list);
     }
 
 }
