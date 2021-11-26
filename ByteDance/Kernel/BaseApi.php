@@ -10,7 +10,7 @@ namespace ByteDance\Kernel;
 class BaseApi
 {
 
-    const SDK_VER = '1.0.5';
+    const SDK_VER = '1.0.6';
 
     const DOUYIN_API  = "https://open.douyin.com";
     const TOUTIAO_API = "https://open.snssdk.com";
