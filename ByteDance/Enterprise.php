@@ -16,7 +16,7 @@ class Enterprise extends BaseApi
      */
     public function enterprise_im_card_save($access_token, $open_id, $body)
     {
-        $api_url = self::DEMO_BASE_API . '/enterprise/im/card/save/';
+        $api_url = self::DOUYIN_API . '/enterprise/im/card/save/';
         $params = [
             'access_token' => $access_token,
             'open_id' => $open_id
@@ -36,7 +36,7 @@ class Enterprise extends BaseApi
      */
     public function enterprise_im_card_list($access_token, $open_id, $count = null, $cursor = 10)
     {
-        $api_url = self::DEMO_BASE_API . '/enterprise/im/card/list/';
+        $api_url = self::DOUYIN_API . '/enterprise/im/card/list/';
         $params = [
             'access_token' => $access_token,
             'open_id' => $open_id,
@@ -56,7 +56,7 @@ class Enterprise extends BaseApi
      */
     public function enterprise_im_message_send($access_token, $open_id, $body)
     {
-        $api_url = self::DEMO_BASE_API . '/enterprise/im/message/send/';
+        $api_url = self::DOUYIN_API . '/enterprise/im/message/send/';
         $params = [
             'access_token' => $access_token,
             'open_id' => $open_id
