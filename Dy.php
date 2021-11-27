@@ -14,6 +14,7 @@ use ByteDance\Kernel\DataArray;
  * @method \ByteDance\Toutiao Toutiao($options = []) static 头条操作
  * @method \ByteDance\Tool Tool($options = []) static 工具能力
  * @method \ByteDance\Special Special($options = []) static 特殊能力
+ * @method \ByteDance\Enterprise Enterprise($options = []) static 企业能力
  * @method \ByteDance\Data Data($options = []) static 数据开放服务
  * @method \ByteDance\Search Search($options = []) static 搜索管理
  * @method \ByteDance\Event Event($options = []) static Webhooks事件订阅
