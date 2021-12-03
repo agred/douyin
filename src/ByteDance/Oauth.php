@@ -118,4 +118,19 @@ class Oauth extends BaseApi
         return $this->cloud_https_post($api_url, $params);
     }
 
+    /**
+     * @title 获取jsapi_ticket
+     * @Scope js.ticket
+     * @url https://open.douyin.com/platform/doc/6848798514798004236
+     * @param string $access_token 调用/oauth/client_token/生成的token，此token不需要用户授权。
+     */
+    public function jsapi_ticket($access_token)
+    {
+        $api_url = self::DOUYIN_API . '/js/getticket/';
+        $params = [
+            'access_token' => $access_token
+        ];
+        return $this->https_get($api_url, $params);
+    }
+
 }

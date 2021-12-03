@@ -13,8 +13,8 @@
     },
     "autoload" : {
         "psr-4": {
-            "ByteDance\\" : "ByteDance/"
+            "ByteDance\\" : "src/ByteDance/"
         },
-        "files": ["Dy.php","functions.php"]
+        "files": ["src/Dy.php","src/functions.php"]
     }
 }
