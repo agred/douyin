@@ -10,7 +10,7 @@ namespace ByteDance\Kernel;
 class BaseApi
 {
 
-    const SDK_VER = '1.0.7';
+    const SDK_VER = '1.0.8';
 
     const DOUYIN_API  = "https://open.douyin.com";
     const TOUTIAO_API = "https://open.snssdk.com";
@@ -114,6 +114,28 @@ class BaseApi
 
         $result = json_decode($output, true);
         return $result['data'];
+    }
+
+    public function https_file($url, $file)
+    {
+        $curl = curl_init();
+        if(class_exists('\CURLFile')){
+            curl_setopt ( $curl, CURLOPT_SAFE_UPLOAD, true);
+            $data = array('media' => new \CURLFile($file));
+        }else{
+            if (defined ( 'CURLOPT_SAFE_UPLOAD' )) {
+                curl_setopt ( $curl, CURLOPT_SAFE_UPLOAD, false );
+            }
+            $data = array('media' => '@' . realpath($file));
+        }
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        $output = curl_exec($curl);
+        curl_close($curl);
+        return json_decode($output, true);
     }
 
 }

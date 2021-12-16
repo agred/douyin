@@ -17,6 +17,7 @@ use ByteDance\Kernel\DataArray;
  * @method \ByteDance\Enterprise Enterprise($options = []) static 企业能力
  * @method \ByteDance\Data Data($options = []) static 数据开放服务
  * @method \ByteDance\Search Search($options = []) static 搜索管理
+ * @method \ByteDance\Media Media($options = []) static 素材管理
  * @method \ByteDance\Event Event($options = []) static Webhooks事件订阅
  * @method \ByteDance\Othe Othe($options = []) static 其它操作
  */
