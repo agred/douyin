@@ -25,11 +25,11 @@ class Othe extends BaseApi
             $location = $headers['Location'][0];
             $location_arr = explode('?', $location);
             $uid = str_replace('https://www.iesdouyin.com/share/user/', '', $location_arr[0]);
-        }
-        if (!empty($uid) && !is_numeric($uid)) {
-            $callback = file_get_contents('https://www.iesdouyin.com/web/api/v2/user/info/?sec_uid=' . $uid);
-            $callback_data = json_decode($callback, true);
-            $uid = !empty($callback_data['user_info']['uid']) ? $callback_data['user_info']['uid'] : 0;
+            if ($uid && !is_numeric($uid)) {
+                $callback = file_get_contents('https://www.iesdouyin.com/web/api/v2/user/info/?sec_uid=' . $uid);
+                $callback_data = json_decode($callback, true);
+                $uid = !empty($callback_data['user_info']['uid']) ? $callback_data['user_info']['uid'] : 0;
+            }
         }
         $params = ['uid' => empty($uid) ? 0 : $uid, 'type' => 'user.profile'];
         return get_url_scheme($params);
