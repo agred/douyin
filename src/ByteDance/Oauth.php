@@ -109,12 +109,11 @@ class Oauth extends BaseApi
      * @title 生成client_token
      * @Scope
      * @url https://open.douyin.com/platform/doc/6848806493387573256
-     * @param string $grant_type 传client_credential
      */
-    public function client_token($grant_type)
+    public function client_token()
     {
         $api_url = self::DOUYIN_API . '/oauth/client_token/';
-        $params = ['grant_type' => $grant_type];
+        $params = ['grant_type' => 'client_credential'];
         return $this->cloud_https_post($api_url, $params);
     }
 
