@@ -77,19 +77,6 @@ class Oauth extends BaseApi
     }
 
     /**
-     * @title 刷新refresh_token
-     * @Scope renew_refresh_token
-     * @url https://open.douyin.com/platform/doc/6848806519174154248
-     * @param string $refresh_token 通过access_token获取到的refresh_token参数
-     */
-    public function renew_refresh_token($refresh_token)
-    {
-        $api_url = self::DOUYIN_API . '/oauth/renew_refresh_token/';
-        $params = ['refresh_token' => $refresh_token];
-        return $this->cloud_https_post($api_url, $params);
-    }
-
-    /**
      * @title 刷新access_token或续期不会改变refresh_token的有效期
      * @Scope
      * @url https://open.douyin.com/platform/doc/6848806497707722765
@@ -102,6 +89,19 @@ class Oauth extends BaseApi
             'grant_type' => 'refresh_token',
             'refresh_token' => $refresh_token
         ];
+        return $this->cloud_https_post($api_url, $params);
+    }
+
+    /**
+     * @title 刷新refresh_token
+     * @Scope renew_refresh_token
+     * @url https://open.douyin.com/platform/doc/6848806519174154248
+     * @param string $refresh_token 通过access_token获取到的refresh_token参数
+     */
+    public function renew_refresh_token($refresh_token)
+    {
+        $api_url = self::DOUYIN_API . '/oauth/renew_refresh_token/';
+        $params = ['refresh_token' => $refresh_token];
         return $this->cloud_https_post($api_url, $params);
     }
 
