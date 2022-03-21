@@ -12,6 +12,7 @@ use ByteDance\Kernel\DataArray;
  * @method \ByteDance\Video Video($options = []) static 视频操作
  * @method \ByteDance\Comment Comment($options = []) static 用户评论
  * @method \ByteDance\Toutiao Toutiao($options = []) static 头条操作
+ * @method \ByteDance\Xigua Xigua($options = []) static 西瓜操作
  * @method \ByteDance\Tool Tool($options = []) static 工具能力
  * @method \ByteDance\Special Special($options = []) static 特殊能力
  * @method \ByteDance\Enterprise Enterprise($options = []) static 企业能力
