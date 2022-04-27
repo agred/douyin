@@ -39,6 +39,23 @@ class Toutiao extends BaseApi
     }
 
     /**
+     * @title 获取用户信息
+     * @Scope user_info
+     * @url https://open.douyin.com/platform/doc?doc=docs/openapi/account-management/get-account-open-info
+     * @param string $open_id
+     * @param string $access_token
+     */
+    public function userinfo($open_id, $access_token)
+    {
+        $api_url = self::TOUTIAO_API . '/oauth/userinfo/';
+        $params = [
+            'open_id' => $open_id,
+            'access_token' => $access_token
+        ];
+        return $this->https_get($api_url, $params);
+    }
+
+    /**
      * @title 获取access_token
      * @Scope
      * @url https://open.douyin.com/platform/doc/6848806493387606024
