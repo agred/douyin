@@ -11,7 +11,6 @@ use ByteDance\Kernel\BaseApi;
  */
 class Tool extends BaseApi
 {
-
     /**
      * @title 提供一个接口给开发者校验小程序appid是否可挂载到短视频
      * @Scope micapp.is_legal
@@ -21,12 +20,11 @@ class Tool extends BaseApi
      */
     public function devtool_micapp_is_legal($access_token, $micapp_id)
     {
-        $api_url = self::DOUYIN_API . '/devtool/micapp/is_legal/';
-        $params = [
+        $api_url = self::API_DY . '/devtool/micapp/is_legal/';
+        $params  = [
             'access_token' => $access_token,
-            'micapp_id' => $micapp_id
+            'micapp_id'    => $micapp_id
         ];
         return $this->https_get($api_url, $params);
     }
-
 }

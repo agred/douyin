@@ -11,7 +11,6 @@ use ByteDance\Kernel\BaseApi;
  */
 class Search extends BaseApi
 {
-
     /**
      * @title 关键词视频搜索
      * @Scope video.search
@@ -24,13 +23,13 @@ class Search extends BaseApi
      */
     public function video_search($open_id, $access_token, $keyword, $cursor = 0, $count = 20)
     {
-        $api_url = self::DOUYIN_API . '/video/search/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url = self::API_DY . '/video/search/';
+        $params  = [
+            'open_id'      => $open_id,
             'access_token' => $access_token,
-            'keyword' => $keyword,
-            'cursor' => $cursor,
-            'count' => $count
+            'keyword'      => $keyword,
+            'cursor'       => $cursor,
+            'count'        => $count
         ];
         return $this->https_get($api_url, $params);
     }
@@ -46,12 +45,12 @@ class Search extends BaseApi
      */
     public function video_search_comment_list($access_token, $sec_item_id, $cursor = 0, $count = 20)
     {
-        $api_url = self::DOUYIN_API . '/video/search/comment/list/';
-        $params = [
+        $api_url = self::API_DY . '/video/search/comment/list/';
+        $params  = [
             'access_token' => $access_token,
-            'sec_item_id' => $sec_item_id,
-            'cursor' => $cursor,
-            'count' => $count,
+            'sec_item_id'  => $sec_item_id,
+            'cursor'       => $cursor,
+            'count'        => $count,
         ];
         return $this->https_get($api_url, $params);
     }
@@ -66,13 +65,13 @@ class Search extends BaseApi
      */
     public function video_search_comment_reply($open_id, $access_token, $dataBody = [])
     {
-        $api_url = self::DOUYIN_API . '/video/search/comment/reply/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url = self::API_DY . '/video/search/comment/reply/';
+        $params  = [
+            'open_id'      => $open_id,
             'access_token' => $access_token
         ];
         $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url , $dataBody);
+        return $this->https_post($api_url, $dataBody);
     }
 
     /**
@@ -87,15 +86,14 @@ class Search extends BaseApi
      */
     public function video_search_comment_reply_list($access_token, $sec_item_id, $comment_id, $cursor = 0, $count = 20)
     {
-        $api_url = self::DOUYIN_API . '/video/search/comment/reply/list/';
-        $params = [
+        $api_url = self::API_DY . '/video/search/comment/reply/list/';
+        $params  = [
             'access_token' => $access_token,
-            'sec_item_id' => $sec_item_id,
-            'comment_id' => $comment_id,
-            'cursor' => $cursor,
-            'count' => $count
+            'sec_item_id'  => $sec_item_id,
+            'comment_id'   => $comment_id,
+            'cursor'       => $cursor,
+            'count'        => $count
         ];
         return $this->https_get($api_url, $params);
     }
-
 }

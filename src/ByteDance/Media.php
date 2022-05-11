@@ -16,10 +16,10 @@ class Media extends BaseApi
      */
     public function enterprise_media_upload($access_token, $open_id, $file)
     {
-        $api_url = self::DOUYIN_API . '/enterprise/media/upload/';
-        $params = [
+        $api_url = self::API_DY . '/enterprise/media/upload/';
+        $params  = [
             'access_token' => $access_token,
-            'open_id' => $open_id
+            'open_id'      => $open_id
         ];
         $api_url = $api_url . '?' . http_build_query($params);
         return $this->https_file($api_url, $file);
@@ -35,10 +35,10 @@ class Media extends BaseApi
      */
     public function enterprise_media_temp_upload($access_token, $open_id, $file)
     {
-        $api_url = self::DOUYIN_API . '/enterprise/media/temp/upload/';
-        $params = [
+        $api_url = self::API_DY . '/enterprise/media/temp/upload/';
+        $params  = [
             'access_token' => $access_token,
-            'open_id' => $open_id
+            'open_id'      => $open_id
         ];
         $api_url = $api_url . '?' . http_build_query($params);
         return $this->https_file($api_url, $file);
@@ -55,12 +55,12 @@ class Media extends BaseApi
      */
     public function enterprise_media_list($access_token, $open_id, $count = null, $cursor = 10)
     {
-        $api_url = self::DOUYIN_API . '/enterprise/media/list/';
-        $params = [
+        $api_url = self::API_DY . '/enterprise/media/list/';
+        $params  = [
             'access_token' => $access_token,
-            'open_id' => $open_id,
-            'count' => $count,
-            'cursor' => $cursor
+            'open_id'      => $open_id,
+            'count'        => $count,
+            'cursor'       => $cursor
         ];
         return $this->https_get($api_url, $params);
     }
@@ -75,10 +75,10 @@ class Media extends BaseApi
      */
     public function enterprise_media_delete($access_token, $open_id, $body)
     {
-        $api_url = self::DOUYIN_API . '/enterprise/media/delete/';
-        $params = [
+        $api_url = self::API_DY . '/enterprise/media/delete/';
+        $params  = [
             'access_token' => $access_token,
-            'open_id' => $open_id
+            'open_id'      => $open_id
         ];
         $api_url = $api_url . '?' . http_build_query($params);
         return $this->https_post($api_url, $body);

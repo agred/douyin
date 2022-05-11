@@ -20,11 +20,10 @@ use ByteDance\Kernel\DataArray;
  * @method \ByteDance\Search Search($options = []) static 搜索管理
  * @method \ByteDance\Media Media($options = []) static 素材管理
  * @method \ByteDance\Event Event($options = []) static Webhooks事件订阅
- * @method \ByteDance\Othe Othe($options = []) static 其它操作
+ * @method \ByteDance\Other Other($options = []) static 其它操作
  */
 class Dy
 {
-
     /**
      * 静态配置
      */
@@ -52,9 +51,9 @@ class Dy
      * @param $arguments
      * @return mixed
      */
-    public static function __callStatic($name , $arguments)
+    public static function __callStatic($name, $arguments)
     {
-        $name = ucfirst(strtolower($name));
+        $name  = ucfirst(strtolower($name));
         $class = "\\ByteDance\\{$name}";
 
         if (!empty($class) && class_exists($class)) {
@@ -63,5 +62,4 @@ class Dy
             return new $class($config);
         }
     }
-
 }

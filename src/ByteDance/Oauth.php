@@ -11,7 +11,6 @@ use ByteDance\Kernel\BaseApi;
  */
 class Oauth extends BaseApi
 {
-
     /**
      * @title 获取授权码(code) **该URL不是用来请求的, 需要展示给用户用于扫码，在抖音APP支持端内唤醒的版本内打开的话会弹出客户端原生授权页面。
      * @Scope
@@ -23,11 +22,11 @@ class Oauth extends BaseApi
      */
     public function connect($scope, $redirect_uri, $state = "", $optionalScope = "")
     {
-        $api_url = self::DOUYIN_API . '/platform/oauth/connect/';
-        $params = [
+        $api_url = self::API_DY . '/platform/oauth/connect/';
+        $params  = [
             'response_type' => 'code',
-            'scope' => implode(',', $scope),
-            'redirect_uri' => $redirect_uri
+            'scope'         => implode(',', $scope),
+            'redirect_uri'  => $redirect_uri
         ];
         if ($state) {
             $params['state'] = $state;
@@ -49,10 +48,10 @@ class Oauth extends BaseApi
     public function authorize($redirect_uri, $state = "")
     {
         $api_url = 'https://aweme.snssdk.com/oauth/authorize/v2/';
-        $params = [
+        $params  = [
             'response_type' => 'code',
-            'scope' => 'login_id',
-            'redirect_uri' => $redirect_uri
+            'scope'         => 'login_id',
+            'redirect_uri'  => $redirect_uri
         ];
         if ($state) {
             $params['state'] = $state;
@@ -68,9 +67,9 @@ class Oauth extends BaseApi
      */
     public function access_token($code)
     {
-        $api_url = self::DOUYIN_API . '/oauth/access_token/';
-        $params = [
-            'code' => $code,
+        $api_url = self::API_DY . '/oauth/access_token/';
+        $params  = [
+            'code'       => $code,
             'grant_type' => 'authorization_code'
         ];
         return $this->cloud_https_post($api_url, $params);
@@ -84,9 +83,9 @@ class Oauth extends BaseApi
      */
     public function refresh_token($refresh_token)
     {
-        $api_url = self::DOUYIN_API . '/oauth/refresh_token/';
-        $params = [
-            'grant_type' => 'refresh_token',
+        $api_url = self::API_DY . '/oauth/refresh_token/';
+        $params  = [
+            'grant_type'    => 'refresh_token',
             'refresh_token' => $refresh_token
         ];
         return $this->cloud_https_post($api_url, $params);
@@ -100,8 +99,8 @@ class Oauth extends BaseApi
      */
     public function renew_refresh_token($refresh_token)
     {
-        $api_url = self::DOUYIN_API . '/oauth/renew_refresh_token/';
-        $params = ['refresh_token' => $refresh_token];
+        $api_url = self::API_DY . '/oauth/renew_refresh_token/';
+        $params  = ['refresh_token' => $refresh_token];
         return $this->cloud_https_post($api_url, $params);
     }
 
@@ -112,8 +111,8 @@ class Oauth extends BaseApi
      */
     public function client_token()
     {
-        $api_url = self::DOUYIN_API . '/oauth/client_token/';
-        $params = ['grant_type' => 'client_credential'];
+        $api_url = self::API_DY . '/oauth/client_token/';
+        $params  = ['grant_type' => 'client_credential'];
         return $this->cloud_https_post($api_url, $params);
     }
 
@@ -125,11 +124,10 @@ class Oauth extends BaseApi
      */
     public function jsapi_ticket($access_token)
     {
-        $api_url = self::DOUYIN_API . '/js/getticket/';
-        $params = [
+        $api_url = self::API_DY . '/js/getticket/';
+        $params  = [
             'access_token' => $access_token
         ];
         return $this->https_get($api_url, $params);
     }
-
 }

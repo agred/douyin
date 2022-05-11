@@ -4,7 +4,6 @@ namespace ByteDance;
 
 class ApiExcepion extends \Exception
 {
-
     protected $responseBody;
 
     protected $responseHeaders;
@@ -15,7 +14,7 @@ class ApiExcepion extends \Exception
     {
         parent::__construct($message, $code);
         $this->responseHeaders = $responseHeaders;
-        $this->responseBody = $responseBody;
+        $this->responseBody    = $responseBody;
     }
 
     public function getResponseHeaders()
@@ -37,5 +36,4 @@ class ApiExcepion extends \Exception
     {
         return $this->responseObject;
     }
-
 }

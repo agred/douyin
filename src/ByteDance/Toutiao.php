@@ -11,7 +11,6 @@ use ByteDance\Kernel\BaseApi;
  */
 class Toutiao extends BaseApi
 {
-
     /**
      * @title 获取授权码(code) **该URL不是用来请求的, 需要展示给用户用于扫码，在抖音APP支持端内唤醒的版本内打开的话会弹出客户端原生授权页面。
      * @Scope
@@ -23,11 +22,11 @@ class Toutiao extends BaseApi
      */
     public function authorize($scope, $redirect_url, $optionalScope = '', $state = '')
     {
-        $api_url = self::TOUTIAO_API . '/oauth/authorize/';
-        $params = [
+        $api_url = self::API_TT . '/oauth/authorize/';
+        $params  = [
             'response_type' => 'code',
-            'scope' => implode(',', $scope),
-            'redirect_uri' => $redirect_url,
+            'scope'         => implode(',', $scope),
+            'redirect_uri'  => $redirect_url,
         ];
         if ($state != '') {
             $params['state'] = $state;
@@ -47,9 +46,9 @@ class Toutiao extends BaseApi
      */
     public function userinfo($open_id, $access_token)
     {
-        $api_url = self::TOUTIAO_API . '/oauth/userinfo/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url = self::API_TT . '/oauth/userinfo/';
+        $params  = [
+            'open_id'      => $open_id,
             'access_token' => $access_token
         ];
         return $this->https_get($api_url, $params);
@@ -63,9 +62,9 @@ class Toutiao extends BaseApi
      */
     public function access_token($code)
     {
-        $api = self::TOUTIAO_API . '/oauth/access_token/';
+        $api    = self::API_TT . '/oauth/access_token/';
         $params = [
-            'code' => $code,
+            'code'       => $code,
             'grant_type' => 'authorization_code'
         ];
         return $this->cloud_https_post($api, $params);
@@ -79,8 +78,8 @@ class Toutiao extends BaseApi
      */
     public function renew_refresh_token($refresh_token)
     {
-        $api_url = self::DOUYIN_API . '/oauth/renew_refresh_token/';
-        $params = ['refresh_token' => $refresh_token];
+        $api_url = self::API_DY . '/oauth/renew_refresh_token/';
+        $params  = ['refresh_token' => $refresh_token];
         return $this->cloud_https_post($api_url, $params);
     }
 
@@ -92,9 +91,9 @@ class Toutiao extends BaseApi
      */
     public function refresh_token($refresh_token)
     {
-        $api = self::TOUTIAO_API . '/oauth/refresh_token/';
+        $api    = self::API_TT . '/oauth/refresh_token/';
         $params = [
-            'grant_type' => 'refresh_token',
+            'grant_type'    => 'refresh_token',
             'refresh_token' => $refresh_token
         ];
         return $this->cloud_https_post($api, $params);
@@ -108,8 +107,8 @@ class Toutiao extends BaseApi
      */
     public function client_token($grant_type)
     {
-        $api_url = self::TOUTIAO_API . '/oauth/client_token/';
-        $params = ['grant_type' => $grant_type];
+        $api_url = self::API_TT . '/oauth/client_token/';
+        $params  = ['grant_type' => $grant_type];
         return $this->cloud_https_post($api_url, $params);
     }
 
@@ -124,16 +123,16 @@ class Toutiao extends BaseApi
      */
     public function video_data($open_id, $access_token, $item_ids)
     {
-        $api = self::DOUYIN_API . '/toutiao/video/data/';
-        $params = [
-            'open_id' => $open_id,
+        $api      = self::API_DY . '/toutiao/video/data/';
+        $params   = [
+            'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api = $api . '?' . http_build_query($params);
+        $api      = $api . '?' . http_build_query($params);
         $item_ids = [
             'item_ids' => !empty($item_ids) ? [$item_ids] : []
         ];
-        return $this->https_post($api , $item_ids);
+        return $this->https_post($api, $item_ids);
     }
 
     /**
@@ -148,12 +147,12 @@ class Toutiao extends BaseApi
      */
     public function video_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api_url = self::DOUYIN_API . '/toutiao/video/list/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url = self::API_DY . '/toutiao/video/list/';
+        $params  = [
+            'open_id'      => $open_id,
             'access_token' => $access_token,
-            'cursor' => $cursor,
-            'count' => $count
+            'cursor'       => $cursor,
+            'count'        => $count
         ];
         return $this->https_get($api_url, $params);
     }
@@ -168,7 +167,7 @@ class Toutiao extends BaseApi
      */
     public function video_upload($open_id, $access_token, $file)
     {
-        $api = self::DOUYIN_API . '/toutiao/video/upload/?open_id=' . $open_id . '&access_token=' . $access_token;
+        $api = self::API_DY . '/toutiao/video/upload/?open_id=' . $open_id . '&access_token=' . $access_token;
         return $this->https_byte($api, $file);
     }
 
@@ -185,17 +184,17 @@ class Toutiao extends BaseApi
      */
     public function video_create($open_id, $access_token, $video_id, $text = '', $abstract = '')
     {
-        $api = self::DOUYIN_API . '/toutiao/video/create/';
+        $api    = self::API_DY . '/toutiao/video/create/';
         $params = [
-            'open_id' => $open_id,
+            'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api = $api . '?' . http_build_query($params);
-        $body = [
-            'video_id' => $video_id,
-            'text' => $text,
-            'abstract' => $abstract,
-            'praise' => false,
+        $api    = $api . '?' . http_build_query($params);
+        $body   = [
+            'video_id'     => $video_id,
+            'text'         => $text,
+            'abstract'     => $abstract,
+            'praise'       => false,
             'claim_origin' => false,
         ];
         return $this->https_post($api, $body);
@@ -211,9 +210,9 @@ class Toutiao extends BaseApi
      */
     public function video_part_init($open_id, $access_token)
     {
-        $api = self::DOUYIN_API . '/toutiao/video/part/init/';
+        $api    = self::API_DY . '/toutiao/video/part/init/';
         $params = [
-            'open_id' => $open_id,
+            'open_id'      => $open_id,
             'access_token' => $access_token
         ];
         return $this->https_post($api, $params);
@@ -233,12 +232,12 @@ class Toutiao extends BaseApi
     public function video_part_upload($open_id, $access_token, $upload_id, $part_number, $video)
     {
         $params = [
-            'openid_id' => $open_id,
+            'openid_id'    => $open_id,
             'access_token' => $access_token,
-            'upload_id' => $upload_id,
-            'part_number' => $part_number,
+            'upload_id'    => $upload_id,
+            'part_number'  => $part_number,
         ];
-        $api = self::DOUYIN_API . '/toutiao/video/part/upload/' . '?' . http_build_query($params);
+        $api    = self::API_DY . '/toutiao/video/part/upload/' . '?' . http_build_query($params);
 
         return $this->https_post($api, $video);
     }
@@ -255,13 +254,12 @@ class Toutiao extends BaseApi
     public function video_part_complete($open_id, $access_token, $upload_id)
     {
         $params = [
-            'openid_id' => $open_id,
+            'openid_id'    => $open_id,
             'access_token' => $access_token,
-            'upload_id' => $upload_id
+            'upload_id'    => $upload_id
         ];
-        $api = self::DOUYIN_API . '/toutiao/video/part/complete/';
+        $api    = self::API_DY . '/toutiao/video/part/complete/';
 
         return $this->https_post($api, $params);
     }
-
 }

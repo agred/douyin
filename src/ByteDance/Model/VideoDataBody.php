@@ -4,7 +4,5 @@ namespace ByteDance\Model;
 
 class VideoDataBody
 {
-
-    public $item_ids  = [] ;
-
+    public $item_ids = [];
 }

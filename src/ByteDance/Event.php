@@ -11,7 +11,6 @@ use ByteDance\Kernel\BaseApi;
  */
 class Event extends BaseApi
 {
-
     /**
      * @title 获取事件订阅状态
      * @Scope
@@ -20,8 +19,8 @@ class Event extends BaseApi
      */
     public function event_status_list($access_token)
     {
-        $api_url = self::DOUYIN_API . '/event/status/list/';
-        $params = ['access_token' => $access_token];
+        $api_url = self::API_DY . '/event/status/list/';
+        $params  = ['access_token' => $access_token];
         return $this->https_get($api_url, $params);
     }
 
@@ -34,10 +33,9 @@ class Event extends BaseApi
      */
     public function event_status_update($access_token, $list)
     {
-        $api_url = self::DOUYIN_API . '/event/status/update/';
-        $params = ['access_token' => $access_token];
+        $api_url = self::API_DY . '/event/status/update/';
+        $params  = ['access_token' => $access_token];
         $api_url = $api_url . '?' . http_build_query($params);
         return $this->https_post($api_url, $list);
     }
-
 }

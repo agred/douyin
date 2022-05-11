@@ -6,12 +6,11 @@ use ByteDance\Kernel\BaseApi;
 
 /**
  * 其他数据管理
- * Class Othe
+ * Class Other
  * @package ByteDance
  */
-class Othe extends BaseApi
+class Other extends BaseApi
 {
-
     /**
      * @title 获取抖音用户主页 Url scheme
      * @param string $share_url 地址
@@ -67,5 +66,4 @@ class Othe extends BaseApi
         $params = ['id' => $id, 'type' => 'poi.detail'];
         return get_url_scheme($params);
     }
-
 }

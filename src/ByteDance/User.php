@@ -11,7 +11,6 @@ use ByteDance\Kernel\BaseApi;
  */
 class User extends BaseApi
 {
-
     /**
      * @title 获取用户信息
      * @Scope user_info
@@ -21,9 +20,9 @@ class User extends BaseApi
      */
     public function userinfo($open_id, $access_token)
     {
-        $api_url = self::DOUYIN_API . '/oauth/userinfo/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url = self::API_DY . '/oauth/userinfo/';
+        $params  = [
+            'open_id'      => $open_id,
             'access_token' => $access_token
         ];
         return $this->https_get($api_url, $params);
@@ -40,12 +39,12 @@ class User extends BaseApi
      */
     public function fans_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api_url = self::DOUYIN_API . '/fans/list/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url = self::API_DY . '/fans/list/';
+        $params  = [
+            'open_id'      => $open_id,
             'access_token' => $access_token,
-            'cursor' => $cursor,
-            'count' => $count
+            'cursor'       => $cursor,
+            'count'        => $count
         ];
         return $this->https_get($api_url, $params);
     }
@@ -60,10 +59,10 @@ class User extends BaseApi
      */
     public function fans_check($open_id, $access_token, $follower_open_id)
     {
-        $api_url = self::DOUYIN_API . '/fans/check/';
-        $params = [
-            'open_id' => $open_id,
-            'access_token' => $access_token,
+        $api_url = self::API_DY . '/fans/check/';
+        $params  = [
+            'open_id'          => $open_id,
+            'access_token'     => $access_token,
             'follower_open_id' => $follower_open_id
         ];
         return $this->https_get($api_url, $params);
@@ -80,12 +79,12 @@ class User extends BaseApi
      */
     public function following_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api_url = self::DOUYIN_API . '/following/list/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url = self::API_DY . '/following/list/';
+        $params  = [
+            'open_id'      => $open_id,
             'access_token' => $access_token,
-            'cursor' => $cursor,
-            'count' => $count
+            'cursor'       => $cursor,
+            'count'        => $count
         ];
         return $this->https_get($api_url, $params);
     }
@@ -102,5 +101,4 @@ class User extends BaseApi
         $iv = substr($this->client_secret, 0, 16);
         return openssl_decrypt($encryptedData, 'aes-256-cbc', $this->client_secret, 0, $iv);
     }
-
 }

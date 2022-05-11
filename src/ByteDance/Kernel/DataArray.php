@@ -9,7 +9,6 @@ use ArrayAccess;
  */
 class DataArray implements ArrayAccess
 {
-
     /**
      * 当前配置值
      * @var array
@@ -108,5 +107,4 @@ class DataArray implements ArrayAccess
         }
         return isset($this->config[$offset]) ? $this->config[$offset] : null;
     }
-
 }

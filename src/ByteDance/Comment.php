@@ -11,7 +11,6 @@ use ByteDance\Kernel\BaseApi;
  */
 class Comment extends BaseApi
 {
-
     /**
      * @title 评论管理（普通用户）-评论列表
      * @Scope item.comment
@@ -23,16 +22,16 @@ class Comment extends BaseApi
      * @param string $cursor
      * @param string $count
      */
-    public function list($open_id, $access_token, $item_id, $sort_type, $cursor = 0, $count = 10)
+    public function get_list($open_id, $access_token, $item_id, $sort_type, $cursor = 0, $count = 10)
     {
-        $api_url = self::DOUYIN_API . '/item/comment/list/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url = self::API_DY . '/item/comment/list/';
+        $params  = [
+            'open_id'      => $open_id,
             'access_token' => $access_token,
-            'item_id' => $item_id,
-            'sort_type' => $sort_type,
-            'cursor' => $cursor,
-            'count' => $count
+            'item_id'      => $item_id,
+            'sort_type'    => $sort_type,
+            'cursor'       => $cursor,
+            'count'        => $count
         ];
         return $this->https_get($api_url, $params);
     }
@@ -51,15 +50,15 @@ class Comment extends BaseApi
      */
     public function reply_list($open_id, $access_token, $item_id, $comment_id, $sort_type, $cursor = 0, $count = 10)
     {
-        $api_url = self::DOUYIN_API . '/item/comment/reply/list/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url = self::API_DY . '/item/comment/reply/list/';
+        $params  = [
+            'open_id'      => $open_id,
             'access_token' => $access_token,
-            'item_id' => $item_id,
-            'comment_id' => $comment_id,
-            'sort_type' => $sort_type,
-            'cursor' => $cursor,
-            'count' => $count
+            'item_id'      => $item_id,
+            'comment_id'   => $comment_id,
+            'sort_type'    => $sort_type,
+            'cursor'       => $cursor,
+            'count'        => $count
         ];
         return $this->https_get($api_url, $params);
     }
@@ -76,18 +75,18 @@ class Comment extends BaseApi
      */
     public function reply($open_id, $access_token, $item_id, $comment_id, $content)
     {
-        $api_url = self::DOUYIN_API . '/item/comment/reply/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url  = self::API_DY . '/item/comment/reply/';
+        $params   = [
+            'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
+        $api_url  = $api_url . '?' . http_build_query($params);
         $dataBody = [
-            'item_id' => $item_id,
+            'item_id'    => $item_id,
             'comment_id' => $comment_id,
-            'content' => $content
+            'content'    => $content
         ];
-        return $this->https_post($api_url , $dataBody);
+        return $this->https_post($api_url, $dataBody);
     }
 
     /**
@@ -102,13 +101,13 @@ class Comment extends BaseApi
      */
     public function enterprise_list($open_id, $access_token, $item_id, $cursor = 0, $count = 10)
     {
-        $api_url = self::DOUYIN_API . '/video/comment/list/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url = self::API_DY . '/video/comment/list/';
+        $params  = [
+            'open_id'      => $open_id,
             'access_token' => $access_token,
-            'item_id' => $item_id,
-            'cursor' => $cursor,
-            'count' => $count
+            'item_id'      => $item_id,
+            'cursor'       => $cursor,
+            'count'        => $count
         ];
         return $this->https_get($api_url, $params);
     }
@@ -126,14 +125,14 @@ class Comment extends BaseApi
      */
     public function enterprise_reply_list($open_id, $access_token, $item_id, $comment_id, $cursor = 0, $count = 10)
     {
-        $api_url = self::DOUYIN_API . '/video/comment/reply/list/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url = self::API_DY . '/video/comment/reply/list/';
+        $params  = [
+            'open_id'      => $open_id,
             'access_token' => $access_token,
-            'item_id' => $item_id,
-            'comment_id' => $comment_id,
-            'cursor' => $cursor,
-            'count' => $count
+            'item_id'      => $item_id,
+            'comment_id'   => $comment_id,
+            'cursor'       => $cursor,
+            'count'        => $count
         ];
         return $this->https_get($api_url, $params);
     }
@@ -150,18 +149,18 @@ class Comment extends BaseApi
      */
     public function enterprise_reply($open_id, $access_token, $item_id, $comment_id, $content)
     {
-        $api_url = self::DOUYIN_API . '/video/comment/reply/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url  = self::API_DY . '/video/comment/reply/';
+        $params   = [
+            'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
+        $api_url  = $api_url . '?' . http_build_query($params);
         $dataBody = [
-            'item_id' => $item_id,
+            'item_id'    => $item_id,
             'comment_id' => $comment_id,
-            'content' => $content
+            'content'    => $content
         ];
-        return $this->https_post($api_url , $dataBody);
+        return $this->https_post($api_url, $dataBody);
     }
 
     /**
@@ -176,18 +175,17 @@ class Comment extends BaseApi
      */
     public function enterprise_top($open_id, $access_token, $item_id, $comment_id, $top = false)
     {
-        $api_url = self::DOUYIN_API . '/video/comment/top/';
-        $params = [
-            'open_id' => $open_id,
+        $api_url  = self::API_DY . '/video/comment/top/';
+        $params   = [
+            'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
+        $api_url  = $api_url . '?' . http_build_query($params);
         $dataBody = [
-            'item_id' => $item_id,
+            'item_id'    => $item_id,
             'comment_id' => $comment_id,
-            'top' => $top
+            'top'        => $top
         ];
-        return $this->https_post($api_url , $dataBody);
+        return $this->https_post($api_url, $dataBody);
     }
-
 }
