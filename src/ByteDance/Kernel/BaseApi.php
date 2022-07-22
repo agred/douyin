@@ -125,8 +125,7 @@ class BaseApi
         $output = curl_exec($curl);
         curl_close($curl);
 
-        $result = json_decode($output, true);
-        return $result['data'];
+        return json_decode($output, true);
     }
 
     public function https_file($url, $file)
