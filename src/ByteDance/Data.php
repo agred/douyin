@@ -21,13 +21,13 @@ class Data extends BaseApi
      */
     public function data_external_user_item($open_id, $access_token, $date_type)
     {
-        $api_url = self::API_DY . '/data/external/user/item/';
+        $api = self::API_DY . '/data/external/user/item/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'date_type'    => $date_type
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -40,13 +40,13 @@ class Data extends BaseApi
      */
     public function data_external_user_fans($open_id, $access_token, $date_type)
     {
-        $api_url = self::API_DY . '/data/external/user/fans/';
+        $api = self::API_DY . '/data/external/user/fans/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'date_type'    => $date_type
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -59,13 +59,13 @@ class Data extends BaseApi
      */
     public function data_external_user_like($open_id, $access_token, $date_type)
     {
-        $api_url = self::API_DY . '/data/external/user/like/';
+        $api = self::API_DY . '/data/external/user/like/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'date_type'    => $date_type
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -78,13 +78,13 @@ class Data extends BaseApi
      */
     public function data_external_user_comment($open_id, $access_token, $date_type)
     {
-        $api_url = self::API_DY . '/data/external/user/comment/';
+        $api = self::API_DY . '/data/external/user/comment/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'date_type'    => $date_type
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -97,13 +97,13 @@ class Data extends BaseApi
      */
     public function data_external_user_share($open_id, $access_token, $date_type)
     {
-        $api_url = self::API_DY . '/data/external/user/share/';
+        $api = self::API_DY . '/data/external/user/share/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'date_type'    => $date_type
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -116,13 +116,13 @@ class Data extends BaseApi
      */
     public function data_external_user_profile($open_id, $access_token, $date_type)
     {
-        $api_url = self::API_DY . '/data/external/user/profile/';
+        $api = self::API_DY . '/data/external/user/profile/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'date_type'    => $date_type
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -134,12 +134,12 @@ class Data extends BaseApi
      */
     public function fans_data($open_id, $access_token)
     {
-        $api_url = self::API_DY . '/fans/data/';
+        $api = self::API_DY . '/fans/data/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -151,12 +151,12 @@ class Data extends BaseApi
      */
     public function data_extern_fans_source($open_id, $access_token)
     {
-        $api_url = self::API_DY . '/data/extern/fans/source/';
+        $api = self::API_DY . '/data/extern/fans/source/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -168,12 +168,12 @@ class Data extends BaseApi
      */
     public function data_extern_fans_favourite($open_id, $access_token)
     {
-        $api_url = self::API_DY . '/data/extern/fans/favourite/';
+        $api = self::API_DY . '/data/extern/fans/favourite/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -185,12 +185,12 @@ class Data extends BaseApi
      */
     public function data_extern_fans_comment($open_id, $access_token)
     {
-        $api_url = self::API_DY . '/data/extern/fans/comment/';
+        $api = self::API_DY . '/data/extern/fans/comment/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -201,9 +201,9 @@ class Data extends BaseApi
      */
     public function data_extern_billboard_hot_video($access_token)
     {
-        $api_url = self::API_DY . '/data/extern/billboard/hot_video/';
+        $api = self::API_DY . '/data/extern/billboard/hot_video/';
         $params  = ['access_token' => $access_token];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -214,9 +214,9 @@ class Data extends BaseApi
      */
     public function star_hot_list($hot_list_type)
     {
-        $api_url = self::API_DY . '/star/hot_list/';
+        $api = self::API_DY . '/star/hot_list/';
         $params  = ['hot_list_type' => $hot_list_type];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -227,9 +227,9 @@ class Data extends BaseApi
      */
     public function star_author_score($open_id)
     {
-        $api_url = self::API_DY . '/star/author_score/';
+        $api = self::API_DY . '/star/author_score/';
         $params  = ['open_id' => $open_id];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -240,9 +240,9 @@ class Data extends BaseApi
      */
     public function star_author_score_v2($unique_id)
     {
-        $api_url = self::API_DY . '/star/author_score_v2/';
+        $api = self::API_DY . '/star/author_score_v2/';
         $params  = ['unique_id' => $unique_id];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -256,14 +256,14 @@ class Data extends BaseApi
      */
     public function mp_item_click_distribution($open_id, $access_token, $mp_id, $date_type)
     {
-        $api_url = self::API_DY . '/data/external/anchor/mp_item_click_distribution/';
+        $api = self::API_DY . '/data/external/anchor/mp_item_click_distribution/';
         $params  = [
             'unique_id'    => $open_id,
             'access_token' => $access_token,
             'mp_id'        => $mp_id,
             'date_type'    => $date_type,
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -273,7 +273,7 @@ class Data extends BaseApi
      */
     public function hotsearch_sentences()
     {
-        return $this->https_get(self::API_DY . '/hotsearch/sentences/');
+        return $this->get(self::API_DY . '/hotsearch/sentences/');
     }
 
     /**
@@ -285,12 +285,12 @@ class Data extends BaseApi
      */
     public function hotsearch_trending_sentences($cursor, $count)
     {
-        $api_url = self::API_DY . '/hotsearch/trending/sentences/';
+        $api = self::API_DY . '/hotsearch/trending/sentences/';
         $params  = [
             'cursor' => $cursor,
             'count'  => $count,
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -301,10 +301,10 @@ class Data extends BaseApi
      */
     public function hotsearch_videos($hot_sentence)
     {
-        $api_url = self::API_DY . '/hotsearch/videos/';
+        $api = self::API_DY . '/hotsearch/videos/';
         $params  = [
             'hot_sentence' => $hot_sentence,
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 }

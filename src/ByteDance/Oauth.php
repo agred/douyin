@@ -22,7 +22,7 @@ class Oauth extends BaseApi
      */
     public function connect($scope, $redirect_uri, $state = "", $optionalScope = "")
     {
-        $api_url = self::API_DY . '/platform/oauth/connect/';
+        $api = self::API_DY . '/platform/oauth/connect/';
         $params  = [
             'response_type' => 'code',
             'scope'         => implode(',', $scope),
@@ -34,7 +34,7 @@ class Oauth extends BaseApi
         if ($optionalScope) {
             $params['optionalScope'] = $optionalScope;
         }
-        return $api_url . '?' . http_build_query($params);
+        return $api . '?' . http_build_query($params);
     }
 
 
@@ -47,7 +47,7 @@ class Oauth extends BaseApi
      */
     public function authorize($redirect_uri, $state = "")
     {
-        $api_url = 'https://aweme.snssdk.com/oauth/authorize/v2/';
+        $api = 'https://aweme.snssdk.com/oauth/authorize/v2/';
         $params  = [
             'response_type' => 'code',
             'scope'         => 'login_id',
@@ -56,7 +56,7 @@ class Oauth extends BaseApi
         if ($state) {
             $params['state'] = $state;
         }
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -67,12 +67,12 @@ class Oauth extends BaseApi
      */
     public function access_token($code)
     {
-        $api_url = self::API_DY . '/oauth/access_token/';
+        $api = self::API_DY . '/oauth/access_token/';
         $params  = [
             'code'       => $code,
             'grant_type' => 'authorization_code'
         ];
-        return $this->cloud_https_post($api_url, $params);
+        return $this->token($api, $params);
     }
 
     /**
@@ -83,12 +83,12 @@ class Oauth extends BaseApi
      */
     public function refresh_token($refresh_token)
     {
-        $api_url = self::API_DY . '/oauth/refresh_token/';
+        $api = self::API_DY . '/oauth/refresh_token/';
         $params  = [
             'grant_type'    => 'refresh_token',
             'refresh_token' => $refresh_token
         ];
-        return $this->cloud_https_post($api_url, $params);
+        return $this->token($api, $params);
     }
 
     /**
@@ -99,9 +99,9 @@ class Oauth extends BaseApi
      */
     public function renew_refresh_token($refresh_token)
     {
-        $api_url = self::API_DY . '/oauth/renew_refresh_token/';
+        $api = self::API_DY . '/oauth/renew_refresh_token/';
         $params  = ['refresh_token' => $refresh_token];
-        return $this->cloud_https_post($api_url, $params);
+        return $this->token($api, $params);
     }
 
     /**
@@ -111,9 +111,9 @@ class Oauth extends BaseApi
      */
     public function client_token()
     {
-        $api_url = self::API_DY . '/oauth/client_token/';
+        $api = self::API_DY . '/oauth/client_token/';
         $params  = ['grant_type' => 'client_credential'];
-        return $this->cloud_https_post($api_url, $params);
+        return $this->token($api, $params);
     }
 
     /**
@@ -124,11 +124,11 @@ class Oauth extends BaseApi
      */
     public function jsapi_ticket($access_token)
     {
-        $api_url = self::API_DY . '/js/getticket/';
+        $api = self::API_DY . '/js/getticket/';
         $params  = [
             'access_token' => $access_token
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -139,10 +139,10 @@ class Oauth extends BaseApi
      */
     public function open_ticket($access_token)
     {
-        $api_url = self::API_DY . '/open/getticket/';
+        $api = self::API_DY . '/open/getticket/';
         $params  = [
             'access_token' => $access_token
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 }

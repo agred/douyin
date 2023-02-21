@@ -24,7 +24,7 @@ class Comment extends BaseApi
      */
     public function get_list($open_id, $access_token, $item_id, $sort_type, $cursor = 0, $count = 10)
     {
-        $api_url = self::API_DY . '/item/comment/list/';
+        $api = self::API_DY . '/item/comment/list/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
@@ -33,7 +33,7 @@ class Comment extends BaseApi
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -50,7 +50,7 @@ class Comment extends BaseApi
      */
     public function reply_list($open_id, $access_token, $item_id, $comment_id, $sort_type, $cursor = 0, $count = 10)
     {
-        $api_url = self::API_DY . '/item/comment/reply/list/';
+        $api = self::API_DY . '/item/comment/reply/list/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
@@ -60,7 +60,7 @@ class Comment extends BaseApi
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -75,18 +75,18 @@ class Comment extends BaseApi
      */
     public function reply($open_id, $access_token, $item_id, $comment_id, $content)
     {
-        $api_url  = self::API_DY . '/item/comment/reply/';
+        $api  = self::API_DY . '/item/comment/reply/';
         $params   = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api_url  = $api_url . '?' . http_build_query($params);
+        $api  = $api . '?' . http_build_query($params);
         $dataBody = [
             'item_id'    => $item_id,
             'comment_id' => $comment_id,
             'content'    => $content
         ];
-        return $this->https_post($api_url, $dataBody);
+        return $this->post($api, $dataBody);
     }
 
     /**
@@ -101,7 +101,7 @@ class Comment extends BaseApi
      */
     public function enterprise_list($open_id, $access_token, $item_id, $cursor = 0, $count = 10)
     {
-        $api_url = self::API_DY . '/video/comment/list/';
+        $api = self::API_DY . '/video/comment/list/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
@@ -109,7 +109,7 @@ class Comment extends BaseApi
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -125,7 +125,7 @@ class Comment extends BaseApi
      */
     public function enterprise_reply_list($open_id, $access_token, $item_id, $comment_id, $cursor = 0, $count = 10)
     {
-        $api_url = self::API_DY . '/video/comment/reply/list/';
+        $api = self::API_DY . '/video/comment/reply/list/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
@@ -134,7 +134,7 @@ class Comment extends BaseApi
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -149,18 +149,18 @@ class Comment extends BaseApi
      */
     public function enterprise_reply($open_id, $access_token, $item_id, $comment_id, $content)
     {
-        $api_url  = self::API_DY . '/video/comment/reply/';
+        $api  = self::API_DY . '/video/comment/reply/';
         $params   = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api_url  = $api_url . '?' . http_build_query($params);
+        $api  = $api . '?' . http_build_query($params);
         $dataBody = [
             'item_id'    => $item_id,
             'comment_id' => $comment_id,
             'content'    => $content
         ];
-        return $this->https_post($api_url, $dataBody);
+        return $this->post($api, $dataBody);
     }
 
     /**
@@ -175,17 +175,17 @@ class Comment extends BaseApi
      */
     public function enterprise_top($open_id, $access_token, $item_id, $comment_id, $top = false)
     {
-        $api_url  = self::API_DY . '/video/comment/top/';
+        $api  = self::API_DY . '/video/comment/top/';
         $params   = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api_url  = $api_url . '?' . http_build_query($params);
+        $api  = $api . '?' . http_build_query($params);
         $dataBody = [
             'item_id'    => $item_id,
             'comment_id' => $comment_id,
             'top'        => $top
         ];
-        return $this->https_post($api_url, $dataBody);
+        return $this->post($api, $dataBody);
     }
 }

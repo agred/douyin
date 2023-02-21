@@ -19,9 +19,9 @@ class Event extends BaseApi
      */
     public function event_status_list($access_token)
     {
-        $api_url = self::API_DY . '/event/status/list/';
+        $api = self::API_DY . '/event/status/list/';
         $params  = ['access_token' => $access_token];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -33,9 +33,9 @@ class Event extends BaseApi
      */
     public function event_status_update($access_token, $list)
     {
-        $api_url = self::API_DY . '/event/status/update/';
+        $api = self::API_DY . '/event/status/update/';
         $params  = ['access_token' => $access_token];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url, $list);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api, $list);
     }
 }

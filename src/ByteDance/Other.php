@@ -18,8 +18,7 @@ class Other extends BaseApi
      */
     public function get_user_profile($share_url)
     {
-        $headers = get_headers($share_url, true);
-        $response = '';
+        $headers = @get_headers($share_url, true);
         if (is_array($headers['Location'])) {
             $location = $headers['Location'][0];
             $location_arr = explode('?', $location);
@@ -30,8 +29,7 @@ class Other extends BaseApi
                 $uid = !empty($callback_data['user_info']['uid']) ? $callback_data['user_info']['uid'] : 0;
             }
         }
-        $params = ['uid' => empty($uid) ? 0 : $uid, 'type' => 'user.profile'];
-        return get_url_scheme($params);
+        return get_url_scheme(['uid' => empty($uid) ? 0 : $uid, 'type' => 'user.profile']);
     }
 
     /**
@@ -41,7 +39,7 @@ class Other extends BaseApi
      */
     public function get_aweme_detail($share_url)
     {
-        $headers = get_headers($share_url, true);
+        $headers = @get_headers($share_url, true);
         $response = '';
         if (is_array($headers['Location'])) {
             $location = $headers['Location'][1];
@@ -60,10 +58,8 @@ class Other extends BaseApi
      */
     public function get_poi_detail($share_url)
     {
-        $headers = get_headers($share_url, true);
-        $location = $headers['Location'];
-        $id = get_query_str($location, 'id');
-        $params = ['id' => $id, 'type' => 'poi.detail'];
-        return get_url_scheme($params);
+        $headers = @get_headers($share_url, true);
+        $id = is_string($headers['Location']) ? get_query_str($headers['Location'], 'id') : 0;
+        return get_url_scheme(['id' => $id, 'type' => 'poi.detail']);
     }
 }

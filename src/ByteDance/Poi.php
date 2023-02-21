@@ -20,12 +20,12 @@ class Poi extends BaseApi
      */
     public function supplier_sync($access_token, $dataBody = [])
     {
-        $api_url = self::API_DY . '/poi/supplier/sync/';
+        $api = self::API_DY . '/poi/supplier/sync/';
         $params  = [
             'access_token' => $access_token,
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url, $dataBody);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api, $dataBody);
     }
 
     /**
@@ -37,12 +37,12 @@ class Poi extends BaseApi
      */
     public function supplier_query_supplier($access_token, $supplier_ext_id)
     {
-        $api_url = self::API_DY . '/poi/v2/supplier/query/supplier/';
+        $api = self::API_DY . '/poi/v2/supplier/query/supplier/';
         $params  = [
             'access_token'    => $access_token,
             'supplier_ext_id' => $supplier_ext_id
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -54,12 +54,12 @@ class Poi extends BaseApi
      */
     public function base_query_amap($access_token, $amap_id)
     {
-        $api_url = self::API_DY . '/poi/base/query/amap/';
+        $api = self::API_DY . '/poi/base/query/amap/';
         $params  = [
             'access_token' => $access_token,
             'amap_id'      => $amap_id
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -71,12 +71,12 @@ class Poi extends BaseApi
      */
     public function coupon_sync($access_token, $dataBody = [])
     {
-        $api_url = self::API_DY . '/poi/v2/coupon/sync/';
+        $api = self::API_DY . '/poi/v2/coupon/sync/';
         $params  = [
             'access_token' => $access_token
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url, $dataBody);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api, $dataBody);
     }
 
     /**
@@ -88,12 +88,12 @@ class Poi extends BaseApi
      */
     public function coupon_sync_available($access_token, $dataBody = [])
     {
-        $api_url = self::API_DY . '/poi/v2/coupon/sync/coupon_available/';
+        $api = self::API_DY . '/poi/v2/coupon/sync/coupon_available/';
         $params  = [
             'access_token' => $access_token
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url, $dataBody);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api, $dataBody);
     }
 
     /**
@@ -108,7 +108,7 @@ class Poi extends BaseApi
      */
     public function poi_search_keyword($access_token, $cursor = 0, $count = 20, $keyword = '', $city = '')
     {
-        $api_url = self::API_DY . '/poi/search/keyword/';
+        $api = self::API_DY . '/poi/search/keyword/';
         $params  = [
             'access_token' => $access_token,
             'cursor'       => $cursor,
@@ -116,6 +116,6 @@ class Poi extends BaseApi
             'keyword'      => $keyword,
             'city'         => $city
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 }

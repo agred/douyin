@@ -16,13 +16,13 @@ class Enterprise extends BaseApi
      */
     public function enterprise_im_card_save($access_token, $open_id, $body)
     {
-        $api_url = self::API_DY . '/enterprise/im/card/save/';
+        $api = self::API_DY . '/enterprise/im/card/save/';
         $params  = [
             'access_token' => $access_token,
             'open_id'      => $open_id
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url, $body);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api, $body);
     }
 
     /**
@@ -36,14 +36,14 @@ class Enterprise extends BaseApi
      */
     public function enterprise_im_card_list($access_token, $open_id, $count = null, $cursor = 10)
     {
-        $api_url = self::API_DY . '/enterprise/im/card/list/';
+        $api = self::API_DY . '/enterprise/im/card/list/';
         $params  = [
             'access_token' => $access_token,
             'open_id'      => $open_id,
             'count'        => $count,
             'cursor'       => $cursor
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -56,12 +56,12 @@ class Enterprise extends BaseApi
      */
     public function enterprise_im_message_send($access_token, $open_id, $body)
     {
-        $api_url = self::API_DY . '/enterprise/im/message/send/';
+        $api = self::API_DY . '/enterprise/im/message/send/';
         $params  = [
             'access_token' => $access_token,
             'open_id'      => $open_id
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url, $body);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api, $body);
     }
 }

@@ -53,7 +53,7 @@ class Dy
      */
     public static function __callStatic($name, $arguments)
     {
-        $name  = ucfirst(strtolower($name));
+        $name = ucfirst(strtolower($name));
         $class = "\\ByteDance\\{$name}";
 
         if (!empty($class) && class_exists($class)) {

@@ -23,7 +23,7 @@ class Search extends BaseApi
      */
     public function video_search($open_id, $access_token, $keyword, $cursor = 0, $count = 20)
     {
-        $api_url = self::API_DY . '/video/search/';
+        $api = self::API_DY . '/video/search/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
@@ -31,7 +31,7 @@ class Search extends BaseApi
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -45,14 +45,14 @@ class Search extends BaseApi
      */
     public function video_search_comment_list($access_token, $sec_item_id, $cursor = 0, $count = 20)
     {
-        $api_url = self::API_DY . '/video/search/comment/list/';
+        $api = self::API_DY . '/video/search/comment/list/';
         $params  = [
             'access_token' => $access_token,
             'sec_item_id'  => $sec_item_id,
             'cursor'       => $cursor,
             'count'        => $count,
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -65,13 +65,13 @@ class Search extends BaseApi
      */
     public function video_search_comment_reply($open_id, $access_token, $dataBody = [])
     {
-        $api_url = self::API_DY . '/video/search/comment/reply/';
+        $api = self::API_DY . '/video/search/comment/reply/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url, $dataBody);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api, $dataBody);
     }
 
     /**
@@ -86,7 +86,7 @@ class Search extends BaseApi
      */
     public function video_search_comment_reply_list($access_token, $sec_item_id, $comment_id, $cursor = 0, $count = 20)
     {
-        $api_url = self::API_DY . '/video/search/comment/reply/list/';
+        $api = self::API_DY . '/video/search/comment/reply/list/';
         $params  = [
             'access_token' => $access_token,
             'sec_item_id'  => $sec_item_id,
@@ -94,6 +94,6 @@ class Search extends BaseApi
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 }

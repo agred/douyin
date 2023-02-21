@@ -20,12 +20,12 @@ class User extends BaseApi
      */
     public function userinfo($open_id, $access_token)
     {
-        $api_url = self::API_DY . '/oauth/userinfo/';
+        $api = self::API_DY . '/oauth/userinfo/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -39,14 +39,14 @@ class User extends BaseApi
      */
     public function fans_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api_url = self::API_DY . '/fans/list/';
+        $api = self::API_DY . '/fans/list/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -59,13 +59,13 @@ class User extends BaseApi
      */
     public function fans_check($open_id, $access_token, $follower_open_id)
     {
-        $api_url = self::API_DY . '/fans/check/';
+        $api = self::API_DY . '/fans/check/';
         $params  = [
             'open_id'          => $open_id,
             'access_token'     => $access_token,
             'follower_open_id' => $follower_open_id
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -79,14 +79,14 @@ class User extends BaseApi
      */
     public function following_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api_url = self::API_DY . '/following/list/';
+        $api = self::API_DY . '/following/list/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**

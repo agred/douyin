@@ -21,16 +21,16 @@ class Video extends BaseApi
      */
     public function video_data($open_id, $access_token, $item_ids)
     {
-        $api_url  = self::API_DY . '/video/data/';
+        $api  = self::API_DY . '/video/data/';
         $params   = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api_url  = $api_url . '?' . http_build_query($params);
+        $api  = $api . '?' . http_build_query($params);
         $item_ids = [
             'item_ids' => !empty($item_ids) ? $item_ids : []
         ];
-        return $this->https_post($api_url, $item_ids);
+        return $this->post($api, $item_ids);
     }
 
     /**
@@ -44,14 +44,14 @@ class Video extends BaseApi
      */
     public function video_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api_url = self::API_DY . '/video/list/';
+        $api = self::API_DY . '/video/list/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -64,8 +64,8 @@ class Video extends BaseApi
      */
     public function video_upload($open_id, $access_token, $file)
     {
-        $api_url = self::API_DY . '/video/upload/?open_id=' . $open_id . '&access_token=' . $access_token;
-        return $this->https_byte($api_url, $file);
+        $api = self::API_DY . '/video/upload/?open_id=' . $open_id . '&access_token=' . $access_token;
+        return $this->requestByte($api, $file);
     }
 
     /**
@@ -78,13 +78,13 @@ class Video extends BaseApi
      */
     public function video_create($open_id, $access_token, $dataBody = [])
     {
-        $api_url = self::API_DY . '/video/create/';
+        $api = self::API_DY . '/video/create/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url, $dataBody);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api, $dataBody);
     }
 
     /**
@@ -97,13 +97,13 @@ class Video extends BaseApi
      */
     public function video_delete($open_id, $access_token, $item_id)
     {
-        $api_url = self::API_DY . '/video/delete/';
+        $api = self::API_DY . '/video/delete/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url, $item_id);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api, $item_id);
     }
 
     /**
@@ -115,13 +115,13 @@ class Video extends BaseApi
      */
     public function video_part_init($open_id, $access_token)
     {
-        $api_url = self::API_DY . '/video/part/init/';
+        $api = self::API_DY . '/video/part/init/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api);
     }
 
     /**
@@ -136,15 +136,15 @@ class Video extends BaseApi
      */
     public function video_part_upload($open_id, $access_token, $upload_id, $part_number, $video = [])
     {
-        $api_url = self::API_DY . '/video/part/upload/';
+        $api = self::API_DY . '/video/part/upload/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'upload_id'    => $upload_id,
             'part_number'  => $part_number,
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url, $video);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api, $video);
     }
 
     /**
@@ -157,14 +157,14 @@ class Video extends BaseApi
      */
     public function video_part_complete($open_id, $access_token, $upload_id)
     {
-        $api_url = self::API_DY . '/video/part/complete/';
+        $api = self::API_DY . '/video/part/complete/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'upload_id'    => $upload_id
         ];
-        $api_url = $api_url . '?' . http_build_query($params);
-        return $this->https_post($api_url);
+        $api = $api . '?' . http_build_query($params);
+        return $this->post($api);
     }
 
     /**
@@ -176,13 +176,13 @@ class Video extends BaseApi
      */
     public function share_id($access_token, $need_callback = true)
     {
-        $api_url = self::API_DY . '/share-id/';
+        $api = self::API_DY . '/share-id/';
         $params  = [
             'access_token'    => $access_token,
             'need_callback'   => $need_callback,
             'default_hashtag' => 'hashtag'
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -198,7 +198,7 @@ class Video extends BaseApi
      */
     public function video_search($access_token, $open_id, $keyword, $cursor = 0, $count = 10)
     {
-        $api_url = self::API_DY . '/video/search/';
+        $api = self::API_DY . '/video/search/';
         $params  = [
             'access_token' => $access_token,
             'open_id'      => $open_id,
@@ -206,7 +206,7 @@ class Video extends BaseApi
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -221,14 +221,14 @@ class Video extends BaseApi
      */
     public function video_search_comment_list($access_token, $sec_item_id, $cursor = 0, $count = 10)
     {
-        $api_url = self::API_DY . '/video/search/comment/list/';
+        $api = self::API_DY . '/video/search/comment/list/';
         $params  = [
             'access_token' => $access_token,
             'sec_item_id'  => $sec_item_id,
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -244,12 +244,12 @@ class Video extends BaseApi
      */
     public function video_search_comment_reply($access_token, $open_id, $sec_item_id, $content, $comment_id = null)
     {
-        $api_url  = self::API_DY . '/video/search/comment/reply/';
+        $api  = self::API_DY . '/video/search/comment/reply/';
         $params   = [
             'access_token' => $access_token,
             'open_id'      => $open_id,
         ];
-        $api_url  = $api_url . '?' . http_build_query($params);
+        $api  = $api . '?' . http_build_query($params);
         $dataBody = [
             'sec_item_id' => $sec_item_id,
             'content'     => $content
@@ -257,7 +257,7 @@ class Video extends BaseApi
         if ($comment_id) {
             $dataBody['comment_id'] = $comment_id;
         }
-        return $this->https_post($api_url, $dataBody);
+        return $this->post($api, $dataBody);
     }
 
     /**
@@ -273,7 +273,7 @@ class Video extends BaseApi
      */
     public function video_search_comment_reply_list($access_token, $comment_id, $sec_item_id, $cursor = 0, $count = 10)
     {
-        $api_url = self::API_DY . '/video/search/comment/reply/list/';
+        $api = self::API_DY . '/video/search/comment/reply/list/';
         $params  = [
             'access_token' => $access_token,
             'comment_id'   => $comment_id,
@@ -281,6 +281,6 @@ class Video extends BaseApi
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 }

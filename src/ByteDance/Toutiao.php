@@ -22,7 +22,7 @@ class Toutiao extends BaseApi
      */
     public function authorize($scope, $redirect_url, $optionalScope = '', $state = '')
     {
-        $api_url = self::API_TT . '/oauth/authorize/';
+        $api = self::API_TT . '/oauth/authorize/';
         $params  = [
             'response_type' => 'code',
             'scope'         => implode(',', $scope),
@@ -34,7 +34,7 @@ class Toutiao extends BaseApi
         if ($optionalScope != '') {
             $params['optionalScope'] = $optionalScope;
         }
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -46,12 +46,12 @@ class Toutiao extends BaseApi
      */
     public function userinfo($open_id, $access_token)
     {
-        $api_url = self::API_TT . '/oauth/userinfo/';
+        $api = self::API_TT . '/oauth/userinfo/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -67,7 +67,7 @@ class Toutiao extends BaseApi
             'code'       => $code,
             'grant_type' => 'authorization_code'
         ];
-        return $this->cloud_https_post($api, $params);
+        return $this->token($api, $params);
     }
 
     /**
@@ -78,9 +78,9 @@ class Toutiao extends BaseApi
      */
     public function renew_refresh_token($refresh_token)
     {
-        $api_url = self::API_DY . '/oauth/renew_refresh_token/';
+        $api = self::API_DY . '/oauth/renew_refresh_token/';
         $params  = ['refresh_token' => $refresh_token];
-        return $this->cloud_https_post($api_url, $params);
+        return $this->token($api, $params);
     }
 
     /**
@@ -96,7 +96,7 @@ class Toutiao extends BaseApi
             'grant_type'    => 'refresh_token',
             'refresh_token' => $refresh_token
         ];
-        return $this->cloud_https_post($api, $params);
+        return $this->token($api, $params);
     }
 
     /**
@@ -107,9 +107,9 @@ class Toutiao extends BaseApi
      */
     public function client_token($grant_type)
     {
-        $api_url = self::API_TT . '/oauth/client_token/';
+        $api = self::API_TT . '/oauth/client_token/';
         $params  = ['grant_type' => $grant_type];
-        return $this->cloud_https_post($api_url, $params);
+        return $this->token($api, $params);
     }
 
     /**
@@ -132,7 +132,7 @@ class Toutiao extends BaseApi
         $item_ids = [
             'item_ids' => !empty($item_ids) ? [$item_ids] : []
         ];
-        return $this->https_post($api, $item_ids);
+        return $this->post($api, $item_ids);
     }
 
     /**
@@ -147,14 +147,14 @@ class Toutiao extends BaseApi
      */
     public function video_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api_url = self::API_DY . '/toutiao/video/list/';
+        $api = self::API_DY . '/toutiao/video/list/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
             'cursor'       => $cursor,
             'count'        => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -168,7 +168,7 @@ class Toutiao extends BaseApi
     public function video_upload($open_id, $access_token, $file)
     {
         $api = self::API_DY . '/toutiao/video/upload/?open_id=' . $open_id . '&access_token=' . $access_token;
-        return $this->https_byte($api, $file);
+        return $this->requestByte($api, $file);
     }
 
     /**
@@ -197,7 +197,7 @@ class Toutiao extends BaseApi
             'praise'       => false,
             'claim_origin' => false,
         ];
-        return $this->https_post($api, $body);
+        return $this->post($api, $body);
     }
 
     /**
@@ -215,7 +215,7 @@ class Toutiao extends BaseApi
             'open_id'      => $open_id,
             'access_token' => $access_token
         ];
-        return $this->https_post($api, $params);
+        return $this->post($api, $params);
     }
 
     /**
@@ -239,7 +239,7 @@ class Toutiao extends BaseApi
         ];
         $api    = self::API_DY . '/toutiao/video/part/upload/' . '?' . http_build_query($params);
 
-        return $this->https_post($api, $video);
+        return $this->post($api, $video);
     }
 
     /**
@@ -260,6 +260,6 @@ class Toutiao extends BaseApi
         ];
         $api    = self::API_DY . '/toutiao/video/part/complete/';
 
-        return $this->https_post($api, $params);
+        return $this->post($api, $params);
     }
 }

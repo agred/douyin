@@ -23,11 +23,11 @@ class Xigua extends BaseApi
      */
     public function connect($scope, $redirect_uri, $state = "", $optionalScope = "")
     {
-        $api_url = self::API_XG . '/oauth/connect/';
-        $params  = [
+        $api = self::API_XG . '/oauth/connect/';
+        $params = [
             'response_type' => 'code',
-            'scope'         => implode(',', $scope),
-            'redirect_uri'  => $redirect_uri
+            'scope' => implode(',', $scope),
+            'redirect_uri' => $redirect_uri
         ];
         if ($state) {
             $params['state'] = $state;
@@ -35,7 +35,7 @@ class Xigua extends BaseApi
         if ($optionalScope) {
             $params['optionalScope'] = $optionalScope;
         }
-        return $api_url . '?' . http_build_query($params);
+        return $api . '?' . http_build_query($params);
     }
 
     /**
@@ -48,12 +48,12 @@ class Xigua extends BaseApi
      */
     public function userinfo($open_id, $access_token)
     {
-        $api    = self::API_XG . '/oauth/userinfo/';
+        $api = self::API_XG . '/oauth/userinfo/';
         $params = [
-            'open_id'      => $open_id,
+            'open_id' => $open_id,
             'access_token' => $access_token,
         ];
-        return $this->https_post($api, $params);
+        return $this->post($api, $params);
     }
 
     /**
@@ -65,14 +65,14 @@ class Xigua extends BaseApi
      */
     public function access_token($code)
     {
-        $api    = self::API_XG . '/oauth/access_token/';
+        $api = self::API_XG . '/oauth/access_token/';
         $params = [
-            'client_key'    => $this->client_key,
+            'client_key' => $this->client_key,
             'client_secret' => $this->client_secret,
-            'code'          => $code,
-            'grant_type'    => 'authorization_code',
+            'code' => $code,
+            'grant_type' => 'authorization_code',
         ];
-        return $this->https_post($api, $params);
+        return $this->post($api, $params);
     }
 
     /**
@@ -84,12 +84,12 @@ class Xigua extends BaseApi
      */
     public function refresh_token($refresh_token)
     {
-        $api    = self::API_XG . '/oauth/refresh_token/';
+        $api = self::API_XG . '/oauth/refresh_token/';
         $params = [
-            'grant_type'    => 'refresh_token',
+            'grant_type' => 'refresh_token',
             'refresh_token' => $refresh_token
         ];
-        return $this->cloud_https_post($api, $params);
+        return $this->token($api, $params);
     }
 
     /**
@@ -100,9 +100,9 @@ class Xigua extends BaseApi
      */
     public function client_token()
     {
-        $api_url = self::API_XG . '/oauth/client_token/';
-        $params  = ['grant_type' => 'client_credential'];
-        return $this->cloud_https_post($api_url, $params);
+        $api = self::API_XG . '/oauth/client_token/';
+        $params = ['grant_type' => 'client_credential'];
+        return $this->token($api, $params);
     }
 
     /**
@@ -116,16 +116,16 @@ class Xigua extends BaseApi
      */
     public function video_data($open_id, $access_token, $item_ids)
     {
-        $api      = self::API_DY . '/xigua/video/data/';
-        $params   = [
-            'open_id'      => $open_id,
+        $api = self::API_DY . '/xigua/video/data/';
+        $params = [
+            'open_id' => $open_id,
             'access_token' => $access_token
         ];
-        $api      = $api . '?' . http_build_query($params);
+        $api = $api . '?' . http_build_query($params);
         $item_ids = [
             'item_ids' => !empty($item_ids) ? [$item_ids] : []
         ];
-        return $this->https_post($api, $item_ids);
+        return $this->post($api, $item_ids);
     }
 
     /**
@@ -140,14 +140,14 @@ class Xigua extends BaseApi
      */
     public function video_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api_url = self::API_DY . '/xigua/video/list/';
-        $params  = [
-            'open_id'      => $open_id,
+        $api = self::API_DY . '/xigua/video/list/';
+        $params = [
+            'open_id' => $open_id,
             'access_token' => $access_token,
-            'cursor'       => $cursor,
-            'count'        => $count
+            'cursor' => $cursor,
+            'count' => $count
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 
     /**
@@ -161,7 +161,7 @@ class Xigua extends BaseApi
     public function video_upload($open_id, $access_token, $file)
     {
         $api = self::API_DY . '/xigua/video/upload/?open_id=' . $open_id . '&access_token=' . $access_token;
-        return $this->https_byte($api, $file);
+        return $this->requestByte($api, $file);
     }
 
     /**
@@ -177,20 +177,20 @@ class Xigua extends BaseApi
      */
     public function video_create($open_id, $access_token, $video_id, $text = '', $abstract = '')
     {
-        $api    = self::API_DY . '/xigua/video/create/';
+        $api = self::API_DY . '/xigua/video/create/';
         $params = [
-            'open_id'      => $open_id,
+            'open_id' => $open_id,
             'access_token' => $access_token
         ];
-        $api    = $api . '?' . http_build_query($params);
-        $body   = [
-            'video_id'     => $video_id,
-            'text'         => $text,
-            'abstract'     => $abstract,
-            'praise'       => false,
+        $api = $api . '?' . http_build_query($params);
+        $body = [
+            'video_id' => $video_id,
+            'text' => $text,
+            'abstract' => $abstract,
+            'praise' => false,
             'claim_origin' => false,
         ];
-        return $this->https_post($api, $body);
+        return $this->post($api, $body);
     }
 
     /**
@@ -203,12 +203,12 @@ class Xigua extends BaseApi
      */
     public function video_part_init($open_id, $access_token)
     {
-        $api    = self::API_DY . '/xigua/video/part/init/';
+        $api = self::API_DY . '/xigua/video/part/init/';
         $params = [
-            'open_id'      => $open_id,
+            'open_id' => $open_id,
             'access_token' => $access_token
         ];
-        return $this->https_post($api, $params);
+        return $this->post($api, $params);
     }
 
     /**
@@ -225,14 +225,14 @@ class Xigua extends BaseApi
     public function video_part_upload($open_id, $access_token, $upload_id, $part_number, $video)
     {
         $params = [
-            'openid_id'    => $open_id,
+            'openid_id' => $open_id,
             'access_token' => $access_token,
-            'upload_id'    => $upload_id,
-            'part_number'  => $part_number,
+            'upload_id' => $upload_id,
+            'part_number' => $part_number,
         ];
-        $api    = self::API_DY . '/xigua/video/part/upload/' . '?' . http_build_query($params);
+        $api = self::API_DY . '/xigua/video/part/upload/' . '?' . http_build_query($params);
 
-        return $this->https_post($api, $video);
+        return $this->post($api, $video);
     }
 
     /**
@@ -247,12 +247,12 @@ class Xigua extends BaseApi
     public function video_part_complete($open_id, $access_token, $upload_id)
     {
         $params = [
-            'openid_id'    => $open_id,
+            'openid_id' => $open_id,
             'access_token' => $access_token,
-            'upload_id'    => $upload_id
+            'upload_id' => $upload_id
         ];
-        $api    = self::API_DY . '/xigua/video/part/complete/';
+        $api = self::API_DY . '/xigua/video/part/complete/';
 
-        return $this->https_post($api, $params);
+        return $this->post($api, $params);
     }
 }

@@ -5,23 +5,23 @@ namespace ByteDance\Kernel;
 /**
  * 内核
  * Class BaseApi
- * @package ByteDance\Douyin\Kernel
+ * @package ByteDance\Kernel
  */
 class BaseApi
 {
-    const SDK_VER = '1.1.2';
+    const SDK_VER = '2.0.1';
 
     const API_DY = "https://open.douyin.com";
     const API_TT = "https://open.snssdk.com";
     const API_XG = "https://open-api.ixigua.com";
-    public $client_key    = null;
+    public $client_key = null;
     public $client_secret = null;
 
     public $response = null;
 
     public function __construct($config)
     {
-        $this->client_key    = $config['client_key'];
+        $this->client_key = $config['client_key'];
         $this->client_secret = $config['client_secret'];
     }
 
@@ -30,45 +30,24 @@ class BaseApi
         return $this->response ? json_decode($this->response, true) : true;
     }
 
-    public function cloud_https_post($url, $data = [])
+    public function token($url, $data = [])
     {
-        $data['client_key']    = $this->client_key;
+        $data['client_key'] = $this->client_key;
         $data['client_secret'] = $this->client_secret;
-        $result                = $this->https_request($url, $data);
-        if (is_null(json_decode($result))) {
-            return $result;
-        } else {
-            return json_decode($result, true);
-        }
+        return $this->request($url, $data);
     }
 
-    public function https_get($url, $params = [])
+    public function get($url, $params = [])
     {
-        if ($params) {
-            $url = $url . '?' . http_build_query($params);
-        }
-        $result = $this->https_request($url);
-        if (is_null(json_decode($result))) {
-            return $result;
-        } else {
-            return json_decode($result, true);
-        }
+        return $this->request($params ? $url . '?' . http_build_query($params) : $url);
     }
 
-    public function https_post($url, $data = [])
+    public function post($url, $data = [])
     {
-        $header = [
-            'Accept:application/json', 'Content-Type:application/json'
-        ];
-        $result = $this->https_request($url, json_encode($data), $header);
-        if (is_null(json_decode($result))) {
-            return $result;
-        } else {
-            return json_decode($result, true);
-        }
+        return $this->request($url, json_encode($data), ['Accept:application/json', 'Content-Type:application/json']);
     }
 
-    public function https_request($url, $data = null, $headers = null)
+    public function request($url, $data = null, $headers = null)
     {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -88,13 +67,14 @@ class BaseApi
         }
         $output = curl_exec($curl);
         curl_close($curl);
-        return ($output);
+
+        return is_null(json_decode($output)) ? $output : json_decode($output, true);
     }
 
-    public function https_byte($url, $file)
+    public function requestByte($url, $file)
     {
         $payload = '';
-        $params  = "--__X_PAW_BOUNDARY__\r\n"
+        $params = "--__X_PAW_BOUNDARY__\r\n"
             . "Content-Type: application/x-www-form-urlencoded\r\n"
             . "\r\n"
             . $payload . "\r\n"
@@ -104,12 +84,9 @@ class BaseApi
             . "\r\n"
             . file_get_contents($file) . "\r\n"
             . "--__X_PAW_BOUNDARY__--";
-
-        $first_newline      = strpos($params, "\r\n");
+        $first_newline = strpos($params, "\r\n");
         $multipart_boundary = substr($params, 2, $first_newline - 2);
-        $request_headers    = array();
-        $request_headers[]  = 'Content-Length: ' . strlen($params);
-        $request_headers[]  = 'Content-Type: multipart/form-data; boundary=' . $multipart_boundary;
+        $request_headers = ['Content-Length: ' . strlen($params), 'Content-Type: multipart/form-data; boundary=' . $multipart_boundary];
 
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_POST, 1);
@@ -125,20 +102,20 @@ class BaseApi
         $output = curl_exec($curl);
         curl_close($curl);
 
-        return json_decode($output, true);
+        return is_null(json_decode($output)) ? $output : json_decode($output, true);
     }
 
-    public function https_file($url, $file)
+    public function requestFile($url, $file)
     {
         $curl = curl_init();
         if (class_exists('\CURLFile')) {
             curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
-            $data = array('media' => new \CURLFile($file));
+            $data = ['media' => new \CURLFile($file)];
         } else {
             if (defined('CURLOPT_SAFE_UPLOAD')) {
                 curl_setopt($curl, CURLOPT_SAFE_UPLOAD, false);
             }
-            $data = array('media' => '@' . realpath($file));
+            $data = ['media' => '@' . realpath($file)];
         }
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, 1);
@@ -147,6 +124,6 @@ class BaseApi
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         $output = curl_exec($curl);
         curl_close($curl);
-        return json_decode($output, true);
+        return is_null(json_decode($output)) ? $output : json_decode($output, true);
     }
 }

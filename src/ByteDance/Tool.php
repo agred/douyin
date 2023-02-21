@@ -20,11 +20,11 @@ class Tool extends BaseApi
      */
     public function devtool_micapp_is_legal($access_token, $micapp_id)
     {
-        $api_url = self::API_DY . '/devtool/micapp/is_legal/';
+        $api = self::API_DY . '/devtool/micapp/is_legal/';
         $params  = [
             'access_token' => $access_token,
             'micapp_id'    => $micapp_id
         ];
-        return $this->https_get($api_url, $params);
+        return $this->get($api, $params);
     }
 }
