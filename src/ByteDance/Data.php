@@ -14,7 +14,7 @@ class Data extends BaseApi
     /**
      * @title 获取用户视频情况
      * @Scope data.external.user
-     * @url https://open.douyin.com/platform/doc/6848798450331486212
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/user-data/get-user-video-status
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
@@ -33,7 +33,7 @@ class Data extends BaseApi
     /**
      * @title 获取用户粉丝数
      * @Scope data.external.user
-     * @url https://open.douyin.com/platform/doc/6848798450331453444
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/user-data/get-user-fans-count
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
@@ -52,7 +52,7 @@ class Data extends BaseApi
     /**
      * @title 获取用户点赞数
      * @Scope data.external.user
-     * @url https://open.douyin.com/platform/doc/6848798450331518980
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/user-data/get-user-like-number
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
@@ -71,7 +71,7 @@ class Data extends BaseApi
     /**
      * @title 获取用户评论数
      * @Scope data.external.user
-     * @url https://open.douyin.com/platform/doc/6848798450331420676
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/user-data/get-user-comment-count
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
@@ -90,7 +90,7 @@ class Data extends BaseApi
     /**
      * @title 获取用户分享数
      * @Scope data.external.user
-     * @url https://open.douyin.com/platform/doc/6848798471810451459
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/user-data/get-user-share-count
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
@@ -109,7 +109,7 @@ class Data extends BaseApi
     /**
      * @title 获取用户主页访问数
      * @Scope data.external.user
-     * @url https://open.douyin.com/platform/doc/6848798450331551748
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/user-data/get-user-home-pv
      * @param string $open_id
      * @param string $access_token
      * @param int $date_type 输入7代表7天、15代表15天、30代表30天
@@ -127,14 +127,14 @@ class Data extends BaseApi
 
     /**
      * @title 获取用户粉丝数据
-     * @Scope fans.data
-     * @url https://open.douyin.com/platform/doc/6848798471810484227
+     * @Scope fans.data.bind
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/fans-portrait-data/get-user-fans-data
      * @param string $open_id
      * @param string $access_token
      */
     public function fans_data($open_id, $access_token)
     {
-        $api = self::API_DY . '/fans/data/';
+        $api = self::API_DY . '/api/douyin/v1/user/fans_data/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
@@ -145,7 +145,7 @@ class Data extends BaseApi
     /**
      * @title 获取用户粉丝来源分布
      * @Scope data.external.fans_source
-     * @url https://open.douyin.com/platform/doc/6908972512596543500
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/fans-portrait-data/get-user-fans-origin
      * @param string $open_id
      * @param string $access_token
      */
@@ -162,7 +162,7 @@ class Data extends BaseApi
     /**
      * @title 获取用户粉丝喜好
      * @Scope data.external.fans_favourite
-     * @url https://open.douyin.com/platform/doc/6908950744699914252
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/fans-portrait-data/get-user-fans-like
      * @param string $open_id
      * @param string $access_token
      */
@@ -179,7 +179,7 @@ class Data extends BaseApi
     /**
      * @title 获取用户粉丝热评
      * @Scope data.external.fans_favourite
-     * @url https://open.douyin.com/platform/doc/6908970631979681796
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/fans-portrait-data/get-user-fans-hot-comment
      * @param string $open_id
      * @param string $access_token
      */
@@ -196,7 +196,7 @@ class Data extends BaseApi
     /**
      * @title 获取热门视频数据
      * @Scope data.external.billboard_hot_video
-     * @url https://open.douyin.com/platform/doc/6908910551393437707
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/tops-data/hot-video-list/hot-video-list/
      * @param string $access_token
      */
     public function data_extern_billboard_hot_video($access_token)
@@ -209,7 +209,7 @@ class Data extends BaseApi
     /**
      * @title 获取抖音星图达人热榜
      * @Scope star_tops
-     * @url https://open.douyin.com/platform/doc?doc=docs/openapi/data-open-service/star-data/star-tops/get-star-author-hot-list
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/star-data/star-tops/get-star-author-hot-list
      * @param string $hot_list_type
      */
     public function star_hot_list($hot_list_type)
@@ -222,7 +222,7 @@ class Data extends BaseApi
     /**
      * @title 获取抖音星图达人指数
      * @Scope star_top_score_display
-     * @url https://open.douyin.com/platform/doc?doc=docs/openapi/data-open-service/star-data/star-author/get-star-author-data
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/star-data/star-author/get-star-author-data
      * @param string $open_id
      */
     public function star_author_score($open_id)
@@ -235,7 +235,7 @@ class Data extends BaseApi
     /**
      * @title 获取抖音星图达人指数数据V2
      * @Scope star_author_score_display
-     * @url https://open.douyin.com/platform/doc?doc=docs/openapi/data-open-service/star-data/star-author/get-star-author-data-v2
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/data-open-service/star-data/star-author/get-star-author-data-v2
      * @param string $unique_id
      */
     public function star_author_score_v2($unique_id)

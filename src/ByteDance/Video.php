@@ -12,16 +12,16 @@ use ByteDance\Kernel\BaseApi;
 class Video extends BaseApi
 {
     /**
-     * @title 查询指定视频数据
-     * @Scope video.data
-     * @url https://open.douyin.com/platform/doc/6848806544931325965
+     * @title 查询特定视频的视频数据
+     * @Scope video.data.bind
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/video-management/douyin/search-video/video-data
      * @param string $open_id
      * @param string $access_token
      * @param mixed $item_ids
      */
     public function video_data($open_id, $access_token, $item_ids)
     {
-        $api  = self::API_DY . '/video/data/';
+        $api  = self::API_DY . '/api/douyin/v1/video/video_data/';
         $params   = [
             'open_id'      => $open_id,
             'access_token' => $access_token
@@ -34,9 +34,9 @@ class Video extends BaseApi
     }
 
     /**
-     * @title 查询授权账号视频数据
-     * @Scope video.list
-     * @url https://open.douyin.com/platform/doc/6848806536383318024
+     * @title 查询授权账号视频列表
+     * @Scope video.list.bind
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/video-management/douyin/search-video/account-video-list
      * @param string $open_id
      * @param string $access_token
      * @param int $cursor 分页游标, 第一页请求cursor是0
@@ -44,7 +44,7 @@ class Video extends BaseApi
      */
     public function video_list($open_id, $access_token, $cursor = 0, $count = 20)
     {
-        $api = self::API_DY . '/video/list/';
+        $api = self::API_DY . '/api/douyin/v1/video/video_list/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
@@ -55,30 +55,51 @@ class Video extends BaseApi
     }
 
     /**
+     * @title 查询抖音视频来源
+     * @Scope video.data
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/video-management/douyin/search-video/douyin-video-origin
+     * @param string $open_id
+     * @param string $access_token
+     */
+    public function video_source($open_id, $access_token)
+    {
+        $api = self::API_DY . '/video/source/1';
+        $params   = [
+            'open_id'      => $open_id,
+            'access_token' => $access_token
+        ];
+        $api  = $api . '?' . http_build_query($params);
+        $item_ids = [
+            'item_ids' => !empty($item_ids) ? $item_ids : []
+        ];
+        return $this->post($api, $item_ids);
+    }
+
+    /**
      * @title 上传视频
-     * @Scope video.create
-     * @url https://open.douyin.com/platform/doc/6848798087398295555
+     * @Scope video.create.bind
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/video-management/douyin/create-video/upload-video
      * @param string $open_id
      * @param string $access_token
      * @param string $file
      */
     public function video_upload($open_id, $access_token, $file)
     {
-        $api = self::API_DY . '/video/upload/?open_id=' . $open_id . '&access_token=' . $access_token;
+        $api = self::API_DY . '/api/douyin/v1/video/upload_video/?open_id=' . $open_id . '&access_token=' . $access_token;
         return $this->requestByte($api, $file);
     }
 
     /**
-     * @title 创建抖音视频
-     * @Scope video.create
-     * @url https://open.douyin.com/platform/doc/6848798087398328323
+     * @title 创建视频
+     * @Scope video.create.bind
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/video-management/douyin/create-video/video-create
      * @param string $open_id
      * @param string $access_token
      * @param array $dataBody
      */
     public function video_create($open_id, $access_token, $dataBody = [])
     {
-        $api = self::API_DY . '/video/create/';
+        $api = self::API_DY . '/api/douyin/v1/video/create_video/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
@@ -87,35 +108,35 @@ class Video extends BaseApi
         return $this->post($api, $dataBody);
     }
 
-    /**
-     * @title 删除视频
-     * @Scope video.delete
-     * @url https://open.douyin.com/platform/doc/6848806536383383560
-     * @param string $open_id
-     * @param string $access_token
-     * @param string $item_id
-     */
-    public function video_delete($open_id, $access_token, $item_id)
-    {
-        $api = self::API_DY . '/video/delete/';
-        $params  = [
-            'open_id'      => $open_id,
-            'access_token' => $access_token
-        ];
-        $api = $api . '?' . http_build_query($params);
-        return $this->post($api, $item_id);
-    }
+    // /**
+    //  * @title 删除视频
+    //  * @Scope video.delete
+    //  * @url https://open.douyin.com/platform/doc/6848806536383383560
+    //  * @param string $open_id
+    //  * @param string $access_token
+    //  * @param string $item_id
+    //  */
+    // public function video_delete($open_id, $access_token, $item_id)
+    // {
+    //     $api = self::API_DY . '/video/delete/';
+    //     $params  = [
+    //         'open_id'      => $open_id,
+    //         'access_token' => $access_token
+    //     ];
+    //     $api = $api . '?' . http_build_query($params);
+    //     return $this->post($api, $item_id);
+    // }
 
     /**
-     * @title 初始化分片上传
-     * @Scope video.create
-     * @url https://open.douyin.com/platform/doc/6848798087398393859
+     * @title 分片上传初始化
+     * @Scope video.create.bind
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/video-management/douyin/create-video/video-part-upload-init
      * @param string $open_id
      * @param string $access_token
      */
     public function video_part_init($open_id, $access_token)
     {
-        $api = self::API_DY . '/video/part/init/';
+        $api = self::API_DY . '/api/douyin/v1/video/init_video_part_upload/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token
@@ -125,9 +146,9 @@ class Video extends BaseApi
     }
 
     /**
-     * @title 上传视频分片到文件服务器
-     * @Scope video.create
-     * @url https://open.douyin.com/platform/doc/6848798087226460172
+     * @title 分片上传
+     * @Scope video.create.bind
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/video-management/douyin/create-video/video-part-upload
      * @param string $open_id
      * @param string $access_token
      * @param string $upload_id
@@ -136,7 +157,7 @@ class Video extends BaseApi
      */
     public function video_part_upload($open_id, $access_token, $upload_id, $part_number, $video = [])
     {
-        $api = self::API_DY . '/video/part/upload/';
+        $api = self::API_DY . '/api/douyin/v1/video/upload_video_part/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
@@ -148,16 +169,16 @@ class Video extends BaseApi
     }
 
     /**
-     * @title 分片完成上传
-     * @Scope video.create
-     * @url https://open.douyin.com/platform/doc/6848798087398361091
+     * @title 分片上传完成
+     * @Scope video.create.bind
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/video-management/douyin/create-video/video-part-upload-complete
      * @param string $open_id
      * @param string $access_token
      * @param string $upload_id
      */
     public function video_part_complete($open_id, $access_token, $upload_id)
     {
-        $api = self::API_DY . '/video/part/complete/';
+        $api = self::API_DY . '/api/douyin/v1/video/complete_video_part_upload/';
         $params  = [
             'open_id'      => $open_id,
             'access_token' => $access_token,
@@ -170,7 +191,7 @@ class Video extends BaseApi
     /**
      * @title 获取share-id
      * @Scope aweme.share
-     * @url https://open.douyin.com/platform/doc/6848798622172121099
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/video-management/douyin/search-video/video-share-result
      * @param string $access_token
      * @param bool $need_callback
      */
@@ -188,7 +209,7 @@ class Video extends BaseApi
     /**
      * @title 关键词视频搜索
      * @Scope video.search
-     * @url https://open.douyin.com/platform/doc?doc=docs/openapi/search-management/keywords-video-list/keywords-video
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/search-management/keywords-video-list/keywords-video
      * @param string $access_token
      * @param string $open_id
      * @param string $keyword
@@ -212,7 +233,7 @@ class Video extends BaseApi
     /**
      * @title 关键词视频评论列表
      * @Scope video.search.comment
-     * @url https://open.douyin.com/platform/doc?doc=docs/openapi/search-management/keywords-video-comment-management/comment-list
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/search-management/keywords-video-comment-management/comment-list
      * @param string $access_token
      * @param string $sec_item_id
      * @param int $cursor
@@ -234,7 +255,7 @@ class Video extends BaseApi
     /**
      * @title 关键词视频评论回复
      * @Scope video.search.comment
-     * @url https://open.douyin.com/platform/doc?doc=docs/openapi/search-management/keywords-video-comment-management/comment-reply
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/search-management/keywords-video-comment-management/comment-reply
      * @param string $access_token
      * @param string $open_id
      * @param string $sec_item_id
@@ -263,7 +284,7 @@ class Video extends BaseApi
     /**
      * @title 关键词视频评论回复列表
      * @Scope video.search.comment
-     * @url https://open.douyin.com/platform/doc?doc=docs/openapi/search-management/keywords-video-comment-management/comment-reply-list
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/search-management/keywords-video-comment-management/comment-reply-list
      * @param string $access_token
      * @param string $comment_id
      * @param string $sec_item_id

@@ -14,7 +14,7 @@ class Oauth extends BaseApi
     /**
      * @title 获取授权码(code) **该URL不是用来请求的, 需要展示给用户用于扫码，在抖音APP支持端内唤醒的版本内打开的话会弹出客户端原生授权页面。
      * @Scope
-     * @url https://open.douyin.com/platform/doc/6848834666171009035
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-permission/douyin-get-permission-code
      * @param array $scope 应用授权作用域['user_info']
      * @param string $redirect_uri 必须以http/https开头
      * @param string $state
@@ -41,7 +41,7 @@ class Oauth extends BaseApi
     /**
      * @title 获取授权码(code) **抖音静默获取授权码，请求域名为：https://aweme.snssdk.com
      * @Scope
-     * @url https://open.douyin.com/platform/doc/6848834666170959883
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-permission/douyin-get-permission-code
      * @param string $redirect_uri 必须以http/https开头
      * @param string $state
      */
@@ -62,7 +62,7 @@ class Oauth extends BaseApi
     /**
      * @title 获取access_token
      * @Scope
-     * @url https://open.douyin.com/platform/doc/6848806493387606024
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-permission/get-access-token
      * @param string $code
      */
     public function access_token($code)
@@ -78,7 +78,7 @@ class Oauth extends BaseApi
     /**
      * @title 刷新access_token或续期不会改变refresh_token的有效期
      * @Scope
-     * @url https://open.douyin.com/platform/doc/6848806497707722765
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-permission/refresh-access-token
      * @param string $refresh_token 通过access_token获取到的refresh_token参数
      */
     public function refresh_token($refresh_token)
@@ -94,7 +94,7 @@ class Oauth extends BaseApi
     /**
      * @title 刷新refresh_token
      * @Scope renew_refresh_token
-     * @url https://open.douyin.com/platform/doc/6848806519174154248
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-permission/refresh-token
      * @param string $refresh_token 通过access_token获取到的refresh_token参数
      */
     public function renew_refresh_token($refresh_token)
@@ -107,7 +107,7 @@ class Oauth extends BaseApi
     /**
      * @title 生成client_token
      * @Scope
-     * @url https://open.douyin.com/platform/doc/6848806493387573256
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-permission/client-token
      */
     public function client_token()
     {

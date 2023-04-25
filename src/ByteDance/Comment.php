@@ -14,7 +14,7 @@ class Comment extends BaseApi
     /**
      * @title 评论管理（普通用户）-评论列表
      * @Scope item.comment
-     * @url https://open.douyin.com/platform/doc/6848798514797938700
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/interaction-management/comment-management-user/comment-list
      * @param string $open_id
      * @param string $access_token
      * @param string $item_id
@@ -39,7 +39,7 @@ class Comment extends BaseApi
     /**
      * @title 评论管理（普通用户）-评论回复列表
      * @Scope item.comment
-     * @url https://open.douyin.com/platform/doc/6848806819897411591
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/interaction-management/comment-management-user/comment-reply-list
      * @param string $open_id
      * @param string $access_token
      * @param string $item_id
@@ -66,7 +66,7 @@ class Comment extends BaseApi
     /**
      * @title 评论管理（普通用户）-回复视频评论
      * @Scope item.comment
-     * @url https://open.douyin.com/platform/doc/6848798514797971468
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/interaction-management/comment-management-user/video-comment-reply
      * @param string $open_id
      * @param string $access_token
      * @param string $item_id

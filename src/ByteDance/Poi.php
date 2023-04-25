@@ -14,7 +14,7 @@ class Poi extends BaseApi
     /**
      * @title 商铺同步
      * @Scope poi.product
-     * @url https://open.douyin.com/platform/doc/6848798600688961547
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/life-service-open-ability/micro-app/shop/synchronism/
      * @param string $access_token
      * @param array $dataBody
      */
@@ -31,7 +31,7 @@ class Poi extends BaseApi
     /**
      * @title 店铺匹配状态查询
      * @Scope
-     * @url https://open.douyin.com/platform/doc/6948302162829101059
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/life-service-open-ability/micro-app/shop/status-query
      * @param string $access_token
      * @param string $supplier_ext_id
      */
@@ -48,7 +48,7 @@ class Poi extends BaseApi
     /**
      * @title 通过高德POI ID获取抖音POI ID
      * @Scope poi.base
-     * @url https://open.douyin.com/platform/doc/6848798579239192588
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/life-service-open-ability/micro-app/poi-basic-ability/get-douyin-id-by-autoNavi-id/
      * @param string $access_token
      * @param string $amap_id 高德POI ID
      */
@@ -65,7 +65,7 @@ class Poi extends BaseApi
     /**
      * @title 优惠券同步
      * @Scope
-     * @url https://open.douyin.com/platform/doc/6985920247903701005
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/life-service-open-ability/micro-app/coupon/coupon-sync
      * @param string $access_token
      * @param array $dataBody
      */
@@ -82,7 +82,7 @@ class Poi extends BaseApi
     /**
      * @title 优惠券更新
      * @Scope
-     * @url https://open.douyin.com/platform/doc/6985920590397966372
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/life-service-open-ability/micro-app/coupon/coupon-update
      * @param string $access_token
      * @param array $dataBody
      */
@@ -97,9 +97,9 @@ class Poi extends BaseApi
     }
 
     /**
-     * @title 查询POI信息
+     * @title 查询视频携带的地点信息
      * @Scope poi.search
-     * @url https://open.douyin.com/platform/doc/6848806527751555086
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/video-management/douyin/search-video/video-poi
      * @param string $access_token
      * @param int $cursor 分页游标, 第一页请求cursor是0
      * @param int $count 每页数量

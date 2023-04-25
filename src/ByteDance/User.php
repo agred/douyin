@@ -12,9 +12,9 @@ use ByteDance\Kernel\BaseApi;
 class User extends BaseApi
 {
     /**
-     * @title 获取用户信息
+     * @title 获取用户公开信息
      * @Scope user_info
-     * @url https://open.douyin.com/platform/doc/6848806527751489550
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-management/get-account-open-info
      * @param string $open_id
      * @param string $access_token
      */
@@ -52,7 +52,7 @@ class User extends BaseApi
     /**
      * @title 判断粉丝
      * @Scope fans.check
-     * @url https://open.douyin.com/platform/doc/6940930610949048334
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-management/fans-judge
      * @param string $open_id
      * @param string $access_token
      * @param string $follower_open_id
@@ -90,9 +90,9 @@ class User extends BaseApi
     }
 
     /**
-     * @title 解密手机号
+     * @title 获取用户手机号
      * @Scope
-     * @url https://open.douyin.com/platform/doc/6943439913106835470
+     * @url https://developer.open-douyin.com/docs/resource/zh-CN/dop/develop/openapi/account-management/phone-number-decode-demo
      * @param string $encryptedData
      * @return string
      */
