@@ -44,11 +44,13 @@ class Schema extends BaseApi
         $api = self::API_DY . '/api/douyin/v1/schema/get_user_profile/';
         $params   = [
             'access_token' => $access_token,
+        ];
+        $api  = $api . '?' . http_build_query($params);
+        $dataBody = [
             'expire_at' => $expire_at,
             'open_id'      => $open_id,
             'account' => $account
         ];
-        $api  = $api . '?' . http_build_query($params);
-        return $this->post($api);
+        return $this->post($api, $dataBody);
     }
 }
