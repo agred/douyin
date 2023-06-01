@@ -24,6 +24,7 @@ class Oauth extends BaseApi
     {
         $api = self::API_DY . '/platform/oauth/connect/';
         $params  = [
+            'client_key' => $this->client_key,
             'response_type' => 'code',
             'scope'         => implode(',', $scope),
             'redirect_uri'  => $redirect_uri
